@@ -25,14 +25,14 @@ export default function Header() {
 
     const [hoverEnglish, setHoverEnglish] = useState(false);
 
-    // Hàm xử lý vị trí chuột cho Language popup
+
     const handleLanguageMouseMove = (
         e: React.MouseEvent<HTMLDivElement, MouseEvent>
     ) => {
         setLanguagePopupPos({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
     };
 
-    // Hàm xử lý vị trí chuột cho Cart popup
+
     const handleCartMouseMove = (
         e: React.MouseEvent<HTMLDivElement, MouseEvent>
     ) => {
@@ -41,7 +41,7 @@ export default function Header() {
 
     return (
         <header
-            className="fixed top-0 left-0 w-full z-50 px-[110px] h-[120px] 
+            className="fixed top-0 left-0 w-full z-50 px-[140px] h-[120px] 
       bg-gradient-to-b from-[#ee4d2d] to-[#ff7337] text-white shadow"
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -233,11 +233,12 @@ export default function Header() {
                                     placeholder="Shopee bao ship 0đ - Đăng ký ngay!"
                                     onFocus={() => setIsSearchFocused(true)}
                                     onBlur={() => setIsSearchFocused(false)}
-                                    className="flex-1 m-[4px] pl-4 pr-14 py-2 rounded bg-white text-black text-sm outline-none"
+                                    className="m-[4px] pl-6  py-2.5 bg-white rounded-[2px] text-black text-sm outline-none"
+                                    style={{ width: "calc(100% + 80px)" }}
                                 />
 
                                 {/* Nút search */}
-                                <button className="absolute top-1/2 right-[6px] -translate-y-1/2 bg-[#fb5533] py-1 px-4 rounded flex items-center justify-center">
+                                <button className="absolute top-1/2 right-[6px] -translate-y-1/2 bg-[#fb5533] py-1.5 px-4 rounded-[2px] flex items-center justify-center">
                                     <IoMdSearch size={24} color="white" />
                                 </button>
                             </div>
@@ -260,7 +261,7 @@ export default function Header() {
                             )}
                         </div>
 
-                        <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1 text-xs text-white">
+                        <div className="flex flex-wrap gap-x-4 ml-1 gap-y-1 mt-1 text-xs text-white">
                             <Link className="mt-1" href="">
                                 Baby Tee Ôm Eo
                             </Link>
@@ -290,7 +291,7 @@ export default function Header() {
                         onMouseMove={handleCartMouseMove}
                     >
                         <a href="#">
-                            <FaShoppingCart className="mr-16 mb-2" size={24} color="white" />
+                            <FaShoppingCart className="mr-14 mb-2" size={24} color="white" />
                         </a>
 
                         {/* Mũi tên tam giác */}
@@ -329,7 +330,7 @@ export default function Header() {
                                 <Image
                                     src="/no__cart.png"
                                     alt="No Cart"
-                                    layout="fill"      // hoặc width + height tùy mục đích
+                                    layout="fill"
                                     objectFit="contain"
                                 />
 

@@ -42,7 +42,7 @@ export default function BannerSection() {
         setCurrent(index);
     };
 
-    // Auto slide every 5s
+
     useEffect(() => {
         const timer = setInterval(() => {
             nextSlide();
@@ -52,9 +52,9 @@ export default function BannerSection() {
 
     return (
         <div className="w-full max-w-[1200px] h-[384px] mt-38 mx-auto ">
-            {/* Banner main + small banners */}
+
             <div className="flex gap-2">
-                {/* Main banner slider */}
+
                 <div className="relative w-2/3 h-[250px] overflow-hidden group">
                     <div
                         className="flex transition-transform duration-700 ease-in-out"

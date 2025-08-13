@@ -7,7 +7,8 @@ import Banner from "@/components/Banner";
 import CategoryList from "@/components/CategoryList";
 import ShopeeMall from "@/components/ShopeeMall";
 import FlashSale from "@/components/FlashSale";
-
+import FirstSearch from "@/components/FirstSearch";
+import TodaySuggest from "@/components/TodaySuggest";
 import Footer from "@/components/Footer";
 import { Ban } from "lucide-react";
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -19,6 +20,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <CategoryList></CategoryList>
         <FlashSale></FlashSale>
         <ShopeeMall></ShopeeMall>
+        <FirstSearch></FirstSearch>
+        <TodaySuggest></TodaySuggest>
 
       </body>
     </html>

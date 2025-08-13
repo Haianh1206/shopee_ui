@@ -23,7 +23,7 @@ export default function FlashSale() {
         return () => clearInterval(timer);
     }, []);
 
-    // Trả về mảng [giờ, phút, giây]
+
     const splitTime = (seconds: number) => {
         const h = String(Math.floor(seconds / 3600)).padStart(2, "0");
         const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
@@ -88,7 +88,7 @@ export default function FlashSale() {
                             {products.map((product, idx) => (
                                 <div key={idx} className="px-2">
                                     <div className="bg-white overflow-hidden">
-                                        {/* Ảnh */}
+
                                         <div className="relative w-full h-[200px]">
                                             <Image
                                                 src={product.img}
@@ -96,7 +96,7 @@ export default function FlashSale() {
                                                 fill
                                                 className="relative z-10 object-contain"
                                             />
-                                            {/* Background chân */}
+
                                             <div className="absolute bottom-0 left-0 right-0 z-20">
                                                 <Image
                                                     src={product.bg}
@@ -112,15 +112,27 @@ export default function FlashSale() {
                                             {product.price}
                                         </div>
                                         {/* Button bán chạy */}
-                                        <div className="flex text-center mt-2 mx-auto w-[150px] h-5 text-white text-[11px] font-bold rounded-xl overflow-hidden">
+                                        <div className="relative flex text-center mt-2 mx-auto w-[150px] h-5 text-white text-[11px] font-bold rounded-xl overflow-hidden">
+                                            {/* 10% đầu màu cam đậm */}
+                                            <div className="bg-orange-600" style={{ width: "5%" }}></div>
+
+                                            {/* 10–20% gradient */}
                                             <div
-                                                className="bg-orange-600 flex items-center justify-center"
-                                                style={{ width: "6%" }}
+                                                style={{
+                                                    width: "10%",
+                                                    background: "linear-gradient(to right, #ea580c, #fdba74)"
+                                                }}
                                             ></div>
-                                            <div className="bg-orange-200 text-white-800 flex-1 flex items-center justify-center">
+
+                                            {/* 80% còn lại màu cam nhạt */}
+                                            <div className="bg-orange-200 flex-1"></div>
+
+                                            {/* Text nằm đè giữa */}
+                                            <div className="absolute text-white inset-0 flex items-center justify-center z-10 text-orange-800">
                                                 ĐANG BÁN CHẠY
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             ))}
@@ -132,7 +144,7 @@ export default function FlashSale() {
     );
 }
 
-// Component hiển thị số với animation trượt
+
 function TimeBox({ value }: { value: string }) {
     return (
         <div className="flex">
@@ -168,7 +180,7 @@ function AnimatedDigit({ digit }: { digit: string }) {
                 setDisplayDigit(digit);
                 setIncomingDigit(null);
                 setIsAnimating(false);
-            }, 300); // thời gian khớp với animation
+            }, 300);
 
             return () => clearTimeout(timeout);
         }
