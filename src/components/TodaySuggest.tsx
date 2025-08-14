@@ -1,5 +1,13 @@
 "use client";
 import Image from "next/image";
+import { HiLightningBolt } from "react-icons/hi";
+
+<div className="flex items-center space-x-1">
+    <HiLightningBolt className="text-red-500 w-5 h-5" />
+    <span className="bg-orange-200 text-orange-800 text-[12px] px-1.5 py-0.5 rounded">
+        Đang bán chạy
+    </span>
+</div>
 
 export default function FlashSale() {
     const products = Array(18).fill({
@@ -8,6 +16,7 @@ export default function FlashSale() {
         price: "₫28.000",
         bg: "/bg_img.png",
         label: "Tìm sản phẩm tương tự",
+        sale: "-27%",
     });
 
     return (
@@ -19,14 +28,13 @@ export default function FlashSale() {
                     </h2>
                 </div>
 
-                <div className="grid grid-cols-6 gap-3 px-4 pb-6">
+                <div className="grid grid-cols-6 gap-3 px-4 pb-6 ">
                     {products.map((product, idx) => (
                         <div
                             key={idx}
-                            className="group relative flex flex-col bg-white border border-gray-200 hover:border-red-500 transition-all duration-200"
-                        >
-                            {/* Ảnh */}
-                            <div className="relative w-full aspect-square">
+                            className="group relative flex flex-col bg-white border border-gray-200 hover:border-red-500 transition-all duration-200 ">
+
+                            <div className="relative w-full aspect-square  ">
                                 <Image
                                     src={product.img}
                                     alt="product"
@@ -43,15 +51,18 @@ export default function FlashSale() {
                                         className="object-contain mb-2.5"
                                     />
                                 </div>
+                                <div className="text-shopee-primary font-medium bg-shopee-pink py-0.5 text-[10px] text-[#EE4D2D] border border-gray-300 bg-[#FEEEEA] px-1 text-xs/sp14 absolute top-0 right-0 z-30">
+                                    {product.sale}
+                                </div>
                             </div>
 
-                            {/* Giá */}
 
 
-                            {/* Tên sản phẩm */}
+
+
                             <div className="p-2 flex-grow">
-                                <div className="text-[#555] text-[14px] text-left line-clamp-2">
-                                    <span className="bg-red-500 text-white text-[10px] px-1 py-0.5 rounded-[2px] mr-1 align-middle">
+                                <div className="text-[#555] text-[14px] text-left line-clamp-2 transition-transform duration-200 group-hover:translate-y-[-1px]">
+                                    <span className="bg-red-500 text-white  transition-transform duration-200 group-hover:translate-y-[-1px] text-[10px] px-1 py-0.5 rounded-[2px] mr-1 align-middle">
                                         Yêu thích
                                     </span>
                                     {product.name}
@@ -61,9 +72,15 @@ export default function FlashSale() {
 
 
 
-                            {/* Label hover ở chân sản phẩm */}
-                            <div className="absolute w-[full] left-0 right-0 z-999 -bottom-[27px] bg-red-500 text-white text-center text-[12px] py-1 opacity-0 group-hover:opacity-100 transition-all duration-300">
+
+                            <div className="absolute w-[full] left-0 right-0 z-999 -bottom-[33px] text-[14px] bg-orange-600 text-white text-center text-[12px] py-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
                                 {product.label}
+                            </div>
+                            <div className="flex items-center space-x-1">
+                                <HiLightningBolt style={{ borderRightWidth: "3px" }} className="text-red-500 ml-2 border border-red-500 w-4.5 h-4.5 transition-transform duration-200 group-hover:translate-y-[-1px]" />
+                                <span className="bg-red-300 -ml-1 text-white text-[10px] px-1.5 py-0.5 transition-transform duration-200 group-hover:translate-y-[-1px] ">
+                                    Đang bán chạy
+                                </span>
                             </div>
                             <div className="text-left ml-2 text-red-400 text-lg mt-2">
                                 {product.price}

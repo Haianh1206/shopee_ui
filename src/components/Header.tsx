@@ -77,7 +77,7 @@ export default function Header() {
                                     />
                                 </div>
 
-                                <div className="flex justify-center gap-4 mt-2">
+                                <div className="flex justify-center gap-4 ">
                                     <div className="w-[80px] h-[24px] relative">
                                         <Image
                                             src="/appstore.png"
@@ -96,6 +96,16 @@ export default function Header() {
                                             priority
                                         />
                                     </div>
+
+                                </div>
+                                <div className="w-[80px] -ml-1.5 h-[24px] relative">
+                                    <Image
+                                        src="/AppGallery.png"
+                                        alt="Google Play"
+                                        fill
+                                        style={{ objectFit: "contain" }}
+                                        priority
+                                    />
                                 </div>
                             </div>
                         </div>
