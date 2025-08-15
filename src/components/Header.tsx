@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MdInfoOutline } from "react-icons/md";
+import { usePathname } from "next/navigation";
 import {
     IoMdSearch,
     IoMdNotificationsOutline,
@@ -25,7 +25,8 @@ export default function Header() {
 
     const [hoverEnglish, setHoverEnglish] = useState(false);
 
-
+    const pathname = usePathname();
+    const isProductDetail = pathname.startsWith("/product/");
     const handleLanguageMouseMove = (
         e: React.MouseEvent<HTMLDivElement, MouseEvent>
     ) => {
@@ -41,11 +42,11 @@ export default function Header() {
 
     return (
         <header
-            className="fixed top-0 left-0 w-full z-50 px-[140px] h-[120px] 
-      bg-gradient-to-b from-[#ee4d2d] to-[#ff7337] text-white shadow"
+            className={`${isProductDetail ? "relative" : "fixed"} top-0 left-0 w-full z-50 px-[140px] h-[120px]
+      bg-gradient-to-b from-[#ee4d2d] to-[#ff7337] text-white shadow`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Top bar */}
+
                 <div className="flex justify-between items-center text-sm h-[40px] border-white/20">
                     <div className="flex">
                         <Link

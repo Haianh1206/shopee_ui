@@ -1,23 +1,19 @@
 "use client";
 import Image from "next/image";
-import { HiLightningBolt } from "react-icons/hi";
+import { products } from "@/app/data/products"
 
-<div className="flex items-center space-x-1">
-    <HiLightningBolt className="text-red-500 w-5 h-5" />
-    <span className="bg-orange-200 text-orange-800 text-[12px] px-1.5 py-0.5 rounded">
-        Đang bán chạy
-    </span>
-</div>
+import { HiLightningBolt } from "react-icons/hi";
+import { useRouter } from "next/navigation";
+
 
 export default function FlashSale() {
-    const products = Array(18).fill({
-        name: "[Mẫu Mới] Son Bóng Romand The Juicy Lasting Tint Mẫu Mới, Son Tint Bóng Romand Juicy Lasting Tint 13,14, 22",
-        img: "/Sale_img.jpg",
-        price: "₫28.000",
-        bg: "/bg_img.png",
-        label: "Tìm sản phẩm tương tự",
-        sale: "-27%",
-    });
+
+
+    const router = useRouter();
+
+    const handleClick = (id: number) => {
+        router.push(`/product/${id}`);
+    };
 
     return (
         <div className="w-full bg-[rgba(0,0,0,0.03)] pb-18 text-center pb-6 border-b-[4px] border-red-500">
@@ -29,9 +25,10 @@ export default function FlashSale() {
                 </div>
 
                 <div className="grid grid-cols-6 gap-3 px-4 pb-6 ">
-                    {products.map((product, idx) => (
+                    {products.map((product) => (
                         <div
-                            key={idx}
+                            key={product.id}
+                            onClick={() => handleClick(product.id)}
                             className="group relative flex flex-col bg-white border border-gray-200 hover:border-red-500 transition-all duration-200 ">
 
                             <div className="relative w-full aspect-square  ">
