@@ -51,7 +51,6 @@ export default function FlashSale() {
         <div className="w-full bg-[rgba(0,0,0,0.03)] pb-6">
             <div className="bg-white mx-40 shadow-sm">
                 <div className="bg-white p-4">
-                    {/* Header */}
                     <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center gap-2">
                             <div className="relative ml-2 w-[140px] h-[30px]">
@@ -64,7 +63,6 @@ export default function FlashSale() {
                                 />
                             </div>
 
-                            {/* Đồng hồ kiểu 00 00 00 */}
                             <div className="flex items-center gap-1">
                                 <TimeBox value={hours} />
 
@@ -82,7 +80,6 @@ export default function FlashSale() {
                         </button>
                     </div>
 
-                    {/* Slider */}
                     <div className="relative group">
                         <Slider {...settings}>
                             {products.map((product, idx) => (
@@ -107,16 +104,12 @@ export default function FlashSale() {
                                                 />
                                             </div>
                                         </div>
-                                        {/* Giá */}
                                         <div className="text-center text-red-400 text-lg mt-2">
                                             {product.price}
                                         </div>
-                                        {/* Button bán chạy */}
                                         <div className="relative flex text-center mt-2 mx-auto w-[150px] h-5 text-white text-[11px] font-bold rounded-xl overflow-hidden">
-                                            {/* 10% đầu màu cam đậm */}
                                             <div className="bg-orange-600" style={{ width: "5%" }}></div>
 
-                                            {/* 10–20% gradient */}
                                             <div
                                                 style={{
                                                     width: "10%",
@@ -124,10 +117,9 @@ export default function FlashSale() {
                                                 }}
                                             ></div>
 
-                                            {/* 80% còn lại màu cam nhạt */}
                                             <div className="bg-orange-200 flex-1"></div>
 
-                                            {/* Text nằm đè giữa */}
+
                                             <div className="absolute text-white inset-0 flex items-center justify-center z-10 text-orange-800">
                                                 ĐANG BÁN CHẠY
                                             </div>
@@ -188,7 +180,7 @@ function AnimatedDigit({ digit }: { digit: string }) {
 
     return (
         <div className="relative overflow-hidden w-full h-full leading-none">
-            {/* Số hiện tại */}
+
             <span
                 className={`absolute inset-0 flex items-center justify-center transition-transform duration-300 ease-out ${isAnimating ? "animate-slideOutUp" : ""
                     }`}
@@ -196,7 +188,7 @@ function AnimatedDigit({ digit }: { digit: string }) {
                 {displayDigit}
             </span>
 
-            {/* Số mới */}
+
             {incomingDigit && (
                 <span
                     className="absolute inset-0 flex items-center justify-center animate-slideInUp"

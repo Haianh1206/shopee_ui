@@ -85,7 +85,6 @@ export default function CategoryList() {
                     </div>
                 </div>
 
-                {/* Nút điều hướng vẫn trong container relative để vị trí absolute đúng */}
                 {page < totalPages - 1 && (
                     <button
                         onClick={handleNext}
