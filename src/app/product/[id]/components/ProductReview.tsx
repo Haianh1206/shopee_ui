@@ -1,5 +1,5 @@
 "use client";
-import { FaStar, FaRegStar, } from "react-icons/fa";
+import { FaStar, FaRegStar } from "react-icons/fa";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { useRef, useState } from "react";
 import { Pagination } from "./Pagination";
@@ -13,7 +13,6 @@ const filters = [
     "1 Sao (3)",
     "Có Bình Luận (3)",
     "Có Hình Ảnh / Video (0)",
-
 ];
 
 const reviews = [
@@ -117,9 +116,22 @@ export default function ProductReviews() {
 
     const topRef = useRef<HTMLDivElement | null>(null);
 
-    const totalPages = Math.ceil(reviews.length / reviewsPerPage);
+    // ✅ Lọc review theo filter
+    const filteredReviews = reviews.filter((r) => {
+        if (activeFilter === "Tất Cả") return true;
+        if (activeFilter.startsWith("5 Sao")) return r.rating === 5;
+        if (activeFilter.startsWith("4 Sao")) return r.rating === 4;
+        if (activeFilter.startsWith("3 Sao")) return r.rating === 3;
+        if (activeFilter.startsWith("2 Sao")) return r.rating === 2;
+        if (activeFilter.startsWith("1 Sao")) return r.rating === 1;
+        if (activeFilter.startsWith("Có Bình Luận")) return r.content?.trim() !== "";
+        if (activeFilter.startsWith("Có Hình Ảnh")) return !!r.avatar;
+        return true;
+    });
+
+    const totalPages = Math.ceil(filteredReviews.length / reviewsPerPage);
     const startIndex = (currentPage - 1) * reviewsPerPage;
-    const paginatedReviews = reviews.slice(
+    const paginatedReviews = filteredReviews.slice(
         startIndex,
         startIndex + reviewsPerPage
     );
@@ -130,23 +142,21 @@ export default function ProductReviews() {
     };
 
     return (
-        <div className="w-full bg-[rgba(0,0,0,0.03)] pb-1 pt-4" >
+        <div className="w-full bg-[rgba(0,0,0,0.03)] pb-1 pt-4">
             <div className=" mx-40 bg-white" ref={topRef}>
                 <h3 className="flex items-center text-lg h-12 mb-4">
                     <span className="ml-4">MÔ TẢ SẢN PHẨM</span>
                 </h3>
 
-                <div className="flex items-center border h-[145px] bg-[#FFFBF8] rounded-[2px] p-6 mx-6 mb-6 " >
+                <div className="flex items-center border h-[145px] bg-[#FFFBF8] rounded-[2px] p-6 mx-6 mb-6 ">
                     <div>
                         <span className=" ml-6 text-4xl  text-red-500">4</span>
                         <span className="ml-2 text-[20px] text-red-500">trên 5</span>
                         <div className="flex items-center mt-2 gap-1">
                             {Array.from({ length: 5 }).map((_, i) =>
                                 i < 4 ? (
-
                                     <FaStar key={i} className="w-6 h-6 text-red-500" />
                                 ) : (
-
                                     <FaRegStar
                                         key={i}
                                         className="w-6 h-6 text-transparent"
@@ -157,15 +167,17 @@ export default function ProductReviews() {
                         </div>
                     </div>
 
-
                     {/* Filters */}
                     <div className="flex flex-wrap gap-2 mt-4 ml-10">
                         {filters.map((f) => (
                             <button
                                 key={f}
-                                onClick={() => setActiveFilter(f)}
-                                className={`px-4 py-1 text-sm border transition ${activeFilter === f
-                                    ? "bg-white w-24 text-red-500 border-red-500"
+                                onClick={() => {
+                                    setActiveFilter(f);
+                                    setCurrentPage(1); // reset về page 1 khi đổi filter
+                                }}
+                                className={`px-8 py-1 text-sm border transition ${activeFilter === f
+                                    ? "bg-white  text-red-500 border-red-500"
                                     : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
                                     }`}
                             >
@@ -177,74 +189,79 @@ export default function ProductReviews() {
 
                 {/* Review List */}
                 <div className="space-y-6 mx-6">
-                    {paginatedReviews.map((r) => (
-                        <div key={r.id} className="border-b pl-6 pb-4">
-                            <div className="flex gap-3">
-                                {/* Avatar */}
-                                {r.avatar ? (
-                                    <img
-                                        src={r.avatar}
-                                        alt={r.user}
-                                        className="w-10 h-10 rounded-full object-cover"
-                                    />
-                                ) : (
-                                    <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
-                                        U
+                    {paginatedReviews.length > 0 ? (
+                        paginatedReviews.map((r) => (
+                            <div key={r.id} className="border-b pl-6 pb-4">
+                                <div className="flex gap-3">
+                                    {/* Avatar */}
+                                    {r.avatar ? (
+                                        <img
+                                            src={r.avatar}
+                                            alt={r.user}
+                                            className="w-10 h-10 rounded-full object-cover"
+                                        />
+                                    ) : (
+                                        <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
+                                            U
+                                        </div>
+                                    )}
+
+                                    {/* Nội dung bên phải */}
+                                    <div className="flex-1">
+                                        {/* User */}
+                                        <p className="text-[12px]">{r.user}</p>
+
+                                        {/* Rating */}
+                                        <div className="flex gap-1 mb-1">
+                                            {Array.from({ length: 5 }).map((_, i) => (
+                                                <FaStar
+                                                    key={i}
+                                                    className={`${i < r.rating ? "text-red-400" : "text-gray-300"
+                                                        } w-4 h-4`}
+                                                />
+                                            ))}
+                                        </div>
+
+                                        {/* Date */}
+                                        <p className="text-xs text-gray-500 mb-2">
+                                            {r.date} | {r.type}
+                                        </p>
+
+                                        {/* Content */}
+                                        <p className="text-gray-700 whitespace-pre-line">
+                                            {r.content}
+                                        </p>
+
+                                        {/* Helpful Button */}
+                                        <button className="mt-2 text-sm text-gray-400 flex items-center w-full hover:text-red-500">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 14 13"
+                                                fill="currentColor"
+                                                width={14}
+                                            >
+                                                <path d="M0,12.7272727 L2.54545455,12.7272727 L2.54545455,5.09090909 L0,5.09090909 L0,12.7272727 Z M14,5.72727273 C14,5.02727273 13.4272727,4.45454545 12.7272727,4.45454545 L8.71818182,4.45454545 L9.35454545,1.52727273 L9.35454545,1.33636364 C9.35454545,1.08181818 9.22727273,0.827272727 9.1,0.636363636 L8.4,0 L4.2,4.2 C3.94545455,4.39090909 3.81818182,4.70909091 3.81818182,5.09090909 L3.81818182,11.4545455 C3.81818182,12.1545455 4.39090909,12.7272727 5.09090909,12.7272727 L10.8181818,12.7272727 C11.3272727,12.7272727 11.7727273,12.4090909 11.9636364,11.9636364 L13.8727273,7.44545455 C13.9363636,7.31818182 13.9363636,7.12727273 13.9363636,7 L13.9363636,5.72727273 L14,5.72727273 C14,5.79090909 14,5.72727273 14,5.72727273 Z" />
+                                            </svg>
+                                            <span className="ml-1">Hữu ích?</span>
+                                            <HiOutlineDotsVertical className="ml-auto text-gray-400 w-5 h-5 cursor-pointer" />
+                                        </button>
                                     </div>
-                                )}
-
-                                {/* Nội dung bên phải */}
-                                <div className="flex-1">
-                                    {/* User */}
-                                    <p className="text-[12px]">{r.user}</p>
-
-                                    {/* Rating */}
-                                    <div className="flex gap-1 mb-1">
-                                        {Array.from({ length: 5 }).map((_, i) => (
-                                            <FaStar
-                                                key={i}
-                                                className={`${i < r.rating ? "text-red-400" : "text-gray-300"
-                                                    } w-4 h-4`}
-                                            />
-                                        ))}
-                                    </div>
-
-                                    {/* Date */}
-                                    <p className="text-xs text-gray-500 mb-2">
-                                        {r.date} | {r.type}
-                                    </p>
-
-                                    {/* Content */}
-                                    <p className="text-gray-700 whitespace-pre-line">{r.content}</p>
-
-                                    {/* Helpful Button */}
-                                    <button className="mt-2 text-sm text-gray-400 flex items-center w-full hover:text-red-500">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 14 13"
-                                            fill="currentColor"
-                                            width={14}
-                                        >
-                                            <path d="M0,12.7272727 L2.54545455,12.7272727 L2.54545455,5.09090909 L0,5.09090909 L0,12.7272727 Z M14,5.72727273 C14,5.02727273 13.4272727,4.45454545 12.7272727,4.45454545 L8.71818182,4.45454545 L9.35454545,1.52727273 L9.35454545,1.33636364 C9.35454545,1.08181818 9.22727273,0.827272727 9.1,0.636363636 L8.4,0 L4.2,4.2 C3.94545455,4.39090909 3.81818182,4.70909091 3.81818182,5.09090909 L3.81818182,11.4545455 C3.81818182,12.1545455 4.39090909,12.7272727 5.09090909,12.7272727 L10.8181818,12.7272727 C11.3272727,12.7272727 11.7727273,12.4090909 11.9636364,11.9636364 L13.8727273,7.44545455 C13.9363636,7.31818182 13.9363636,7.12727273 13.9363636,7 L13.9363636,5.72727273 L14,5.72727273 C14,5.79090909 14,5.72727273 14,5.72727273 Z" />
-                                        </svg>
-                                        <span className="ml-1">Hữu ích?</span>
-                                        <HiOutlineDotsVertical className="ml-auto text-gray-400 w-5 h-5 cursor-pointer" />
-                                    </button>
-
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))
+                    ) : (
+                        <p className="text-center text-gray-500">Không có đánh giá nào</p>
+                    )}
                 </div>
 
-
-
                 {/* Pagination */}
-                <Pagination
-                    currentPage={currentPage}
-                    totalPages={totalPages}
-                    onPageChange={handlePageChange}
-                />
+                {totalPages > 1 && (
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={handlePageChange}
+                    />
+                )}
             </div>
         </div>
     );

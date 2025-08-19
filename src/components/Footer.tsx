@@ -94,30 +94,30 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className="py-10  mx-42 text-[#0000008A] text-[14px] flex flex-wrap justify-between items-center">
+            <div className=" py-10  px-42 text-[#0000008A] text-[14px] flex flex-wrap justify-between items-center">
                 <div>© 2025 Shopee. Tất cả các quyền được bảo lưu.</div>
                 <div className=" flex flex-wrap items-center">
                     <span className="text-[#0000008A] text-[14px]">Quốc gia &amp; Khu vực:</span>
                     <span className="text-[#0000008A] text-[14px] cursor-pointer ml-2">Singapore</span>
-                    <span className="mx-1">|</span>
+                    <span className="mx-0.5">|</span>
                     <span className="text-[#0000008A] text-[14px] cursor-pointer">Indonesia</span>
-                    <span className="mx-1">|</span>
+                    <span className="mx-0.5">|</span>
                     <span className="text-[#0000008A] text-[14px] cursor-pointer">Thái Lan</span>
-                    <span className="mx-1">|</span>
+                    <span className="mx-0.5">|</span>
                     <span className="text-[#0000008A] text-[14px] cursor-pointer">Malaysia</span>
-                    <span className="mx-1">|</span>
+                    <span className="mx-0.5">|</span>
                     <span className="text-[#0000008A] text-[14px] cursor-pointer">Việt Nam</span>
-                    <span className="mx-1">|</span>
+                    <span className="mx-0.5">|</span>
                     <span className="text-[#0000008A] text-[14px] cursor-pointer">Philippines</span>
-                    <span className="mx-1">|</span>
+                    <span className="mx-0.5">|</span>
                     <span className="text-[#0000008A] text-[14px] cursor-pointer">Brazil</span>
-                    <span className="mx-1">|</span>
+                    <span className="mx-0.5">|</span>
                     <span className="text-[#0000008A] text-[14px] cursor-pointer">México</span>
-                    <span className="mx-1">|</span>
+                    <span className="mx-0.5">|</span>
                     <span className="text-[#0000008A] text-[14px] cursor-pointer">Colombia</span>
-                    <span className="mx-1">|</span>
+                    <span className="mx-0.5">|</span>
                     <span className="text-[#0000008A] text-[14px] cursor-pointer">Chile</span>
-                    <span className="mx-1">|</span>
+                    <span className="mx-0.5">|</span>
                     <span className="text-[#0000008A] text-[14px] cursor-pointer">Đài Loan</span>
                 </div>
             </div>

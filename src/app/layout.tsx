@@ -1,21 +1,20 @@
-// app/layout.tsx
+"use client";
 
-
-import "../styles/globals.css"
+import { usePathname } from "next/navigation";
 import Header from "@/components/Header";
-
-
-
 import Footer from "@/components/Footer";
-import { Ban } from "lucide-react";
+import "../styles/globals.css";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const isAuthPage = pathname.startsWith("/login") || pathname.startsWith("/register");
+
   return (
     <html lang="vi">
       <body>
-        <Header></Header>
+        {!isAuthPage && <Header />}
         <main>{children}</main>
-        <Footer></Footer>
-
+        {!isAuthPage && <Footer />}
       </body>
     </html>
   );
