@@ -76,7 +76,7 @@ export default function FlashSale() {
                             <div className="flex items-center space-x-1">
                                 <HiLightningBolt style={{ borderRightWidth: "3px" }} className="text-red-500 ml-2 border border-red-500 w-4.5 h-4.5 transition-transform duration-200 group-hover:translate-y-[-1px]" />
                                 <span className="bg-red-300 -ml-1 text-white text-[10px] px-1.5 py-0.5 transition-transform duration-200 group-hover:translate-y-[-1px] ">
-                                    Đang bán chạy
+                                    {product.status}
                                 </span>
                             </div>
                             <div className="text-left ml-2 text-red-400 text-lg mt-2">

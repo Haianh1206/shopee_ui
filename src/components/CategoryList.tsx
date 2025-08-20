@@ -1,36 +1,9 @@
 "use client";
 import { useState } from "react";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import { categories } from "@/app/data/categories";
+import { useRouter } from "next/navigation";
 
-const categories = [
-    { name: "Thời Trang Nam", img: "/cat1.webp" },
-    { name: "Điện Thoại & Phụ Kiện", img: "/cat1.webp" },
-    { name: "Thiết Bị Điện Tử", img: "/cat1.webp" },
-    { name: "Máy Tính & Laptop", img: "/cat1.webp" },
-    { name: "Máy Ảnh & Máy Quay Phim", img: "/cat1.webp" },
-    { name: "Đồng Hồ", img: "/cat1.webp" },
-    { name: "Giày Dép Nam", img: "/cat1.webp" },
-    { name: "Thiết Bị Điện Gia Dụng", img: "/cat1.webp" },
-    { name: "Thể Thao & Du Lịch", img: "/cat1.webp" },
-    { name: "Ô Tô & Xe Máy & Xe Đạp", img: "/cat1.webp" },
-    { name: "Thời Trang Nữ", img: "/cat1.webp" },
-    { name: "Mẹ & Bé", img: "/cat1.webp" },
-    { name: "Nhà Cửa & Đời Sống", img: "/cat1.webp" },
-    { name: "Sắc Đẹp", img: "/cat1.webp" },
-    { name: "Sức Khỏe", img: "/cat1.webp" },
-    { name: "Giày Dép Nữ", img: "/cat1.webp" },
-    { name: "Túi Ví Nữ", img: "/cat1.webp" },
-    { name: "Phụ Kiện & Trang Sức Nữ", img: "/cat1.webp" },
-    { name: "Bách Hóa Online", img: "/cat1.webp" },
-    { name: "Nhà Sách Online", img: "/cat1.webp" },
-    { name: "Đồ Chơi Trẻ Em", img: "/cat1.webp" },
-    { name: "Nhạc Cụ", img: "/cat1.webp" },
-    { name: "Văn Phòng Phẩm", img: "/cat1.webp" },
-    { name: "Dụng Cụ Làm Vườn", img: "/cat1.webp" },
-    { name: "Thú Cưng", img: "/cat1.webp" },
-    { name: "Thực Phẩm", img: "/cat1.webp" },
-    { name: "Đồ Uống", img: "/cat1.webp" },
-];
 
 export default function CategoryList() {
     const perPage = 20;
@@ -44,7 +17,11 @@ export default function CategoryList() {
     const handlePrev = () => {
         if (page > 0) setPage(page - 1);
     };
+    const router = useRouter();
 
+    const handleClick = (id: number) => {
+        router.push(`/product/category/${id}`);
+    };
     return (
         <div className="w-full bg-[rgba(0,0,0,0.03)] py-6">
             <div className="relative bg-white mx-40 h-[370px] group">
@@ -62,11 +39,13 @@ export default function CategoryList() {
                             return (
                                 <div
                                     key={pageIndex}
+
                                     className="grid grid-cols-10 grid-rows-2 grid-flow-col flex-shrink-0 w-full"
                                 >
-                                    {pageItems.map((cat, idx) => (
+                                    {pageItems.map((cat) => (
                                         <div
-                                            key={idx}
+                                            key={cat.id}
+                                            onClick={() => handleClick(cat.id)}
                                             className="flex flex-col items-center h-[155px] p-2 border border-gray-100 hover:shadow-md transition-all duration-200 cursor-pointer"
                                         >
                                             <div className="w-16 h-16 mt-3 flex items-center justify-center rounded-full overflow-hidden bg-gray-100">
