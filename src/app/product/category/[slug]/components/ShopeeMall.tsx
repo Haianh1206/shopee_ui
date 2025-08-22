@@ -51,7 +51,6 @@ export default function ShopeeMall() {
     return (
         <div className="w-full bg-[rgba(0,0,0,0.03)] pb-6">
             <div className="bg-white mx-40 h-[670px] shadow-sm">
-                {/* Tiêu đề */}
                 <div className="flex items-center justify-between mb-4 pb-2">
                     <div className="flex items-center space-x-4 px-5 pt-5 pb-2">
                         <span className="text-red-600 text-[16px] text-lg ">SHOPEE MALL</span>
@@ -60,7 +59,6 @@ export default function ShopeeMall() {
 
                     </div>
 
-                    {/* Bên phải */}
                     <button className="flex items-center cursor-pointer text-red-600 text-sm font-medium">
                         Xem Tất Cả
                         <span className="ml-1 bg-red-600 mr-8 rounded-full p-1 flex items-center justify-center">
@@ -69,7 +67,6 @@ export default function ShopeeMall() {
                     </button>
                 </div>
 
-                {/* Khối banner + sản phẩm */}
                 <div className="relative flex  group">
 
                     <div className="relative w-[100%]">
@@ -112,7 +109,6 @@ export default function ShopeeMall() {
                             </div>
                         </div>
 
-                        {/* Nút điều hướng - Đưa ra ngoài overflow-hidden */}
                         {page > 0 && (
                             <button
                                 onClick={handlePrev}

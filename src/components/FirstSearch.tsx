@@ -65,7 +65,6 @@ export default function FlashSale() {
                                                 fill
                                                 className="relative z-10 object-contain"
                                             />
-                                            {/* Background chân */}
                                             <div className="absolute top-0 left-0 right-0 z-20">
                                                 <Image
                                                     src={product.bg}

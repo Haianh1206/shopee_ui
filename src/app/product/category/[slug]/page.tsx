@@ -2,6 +2,7 @@
 import { useParams } from "next/navigation";
 import CategoryFilterBar from "@/app/product/category/[slug]/components/CategoryFilterBar";
 import ShopeeMall from "@/app/product/category/[slug]/components/ShopeeMall";
+import CategoryPage from "@/app/product/category/[slug]/components/CategoryPage";
 
 import Banner from "@/app/product/category/[slug]/components/Banner";
 
@@ -20,7 +21,7 @@ export default function ProductListPage() {
             <Banner />
             <ShopeeMall />
             <CategoryFilterBar />
-
+            <CategoryPage />
         </div>
     );
 }

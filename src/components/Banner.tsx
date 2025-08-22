@@ -75,8 +75,8 @@ export default function BannerSection() {
                         ))}
                     </div>
 
-                    {/* Left arrow */}
-                    {/* Left arrow */}
+
+
                     <button
                         onClick={prevSlide}
                         className="absolute  text-white top-1/2 -left-3.5 -translate-y-1/2 px-2 py-4.5 bg-[rgba(0,0,0,0.2)] text-black rounded opacity-0 group-hover:opacity-100 transition-opacity"
@@ -84,7 +84,6 @@ export default function BannerSection() {
                         <FaChevronLeft size={24} />
                     </button>
 
-                    {/* Right arrow */}
                     <button
                         onClick={nextSlide}
                         className="absolute text-white top-1/2 -right-3.5 -translate-y-1/2 px-2 py-4.5 bg-[rgba(0,0,0,0.2)] text-black rounded opacity-0 group-hover:opacity-100 transition-opacity"
@@ -93,7 +92,6 @@ export default function BannerSection() {
                     </button>
 
 
-                    {/* Indicator dots */}
                     <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
                         {banners.map((_, index) => (
                             <button
@@ -108,7 +106,6 @@ export default function BannerSection() {
                     </div>
                 </div>
 
-                {/* Small banners */}
                 <div className="w-1/3 flex flex-col gap-2">
                     {bannerSmall.map((bn) => (
                         <div
@@ -126,7 +123,6 @@ export default function BannerSection() {
                 </div>
             </div>
 
-            {/* Items below */}
             <div className="mt-6 grid grid-cols-6 gap-4">
                 {items.map((item) => (
                     <div

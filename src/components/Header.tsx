@@ -66,7 +66,6 @@ export default function Header() {
                         <div className="relative group inline-block pr-3 pl-3 cursor-pointer text-[13px] text-white after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:h-4 after:border-r after:border-white/50 after:opacity-100">
                             Tải ứng dụng
 
-                            {/* Popup ẩn mặc định */}
                             <div className="absolute top-full left-0 mt-2 w-[180px] h-[240px] bg-white rounded shadow-lg p-3 text-black opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-opacity duration-300 z-50">
                                 <div className="w-[175px] h-[175px] -translate-y-2 -translate-x-2 relative">
                                     <Image
@@ -144,12 +143,11 @@ export default function Header() {
                         >
                             <div className="inline-flex items-center cursor-pointer hover:opacity-70">
                                 <MdLanguage size={16} />
-                                {/* Dùng span thay cho Link vì không chuyển trang */}
                                 <span className="text-[13px] mx-1 select-none">Tiếng Việt</span>
                                 <IoIosArrowDown size={16} />
                             </div>
 
-                            {/* Mũi tên tam giác nhỏ (arrow) */}
+
                             {showLanguagePopup && (
                                 <div
                                     style={{
@@ -177,10 +175,8 @@ export default function Header() {
                                     backgroundColor: "#fff",
                                 }}
                             >
-                                {/* Lớp giả để giữ hover popup */}
                                 <div className="absolute inset-0 -mt-3" aria-hidden="true"></div>
 
-                                {/* Tiếng Việt - font weight nhẹ hơn */}
                                 <div
                                     id="viet"
                                     className={`mb-2 font-normal ${hoverEnglish ? "text-black" : "text-[#ff7337]"
@@ -189,7 +185,6 @@ export default function Header() {
                                     Tiếng Việt
                                 </div>
 
-                                {/* English với hover đổi màu Tiếng Việt, font weight nhẹ */}
                                 <div
                                     className="relative inline-block mt-3"
                                     onMouseEnter={() => setHoverEnglish(true)}
@@ -232,15 +227,15 @@ export default function Header() {
 
                     </div>
 
-                    {/* Search bar */}
+
                     <div className="flex-1 mr-20 ml-12  relative z-0">
                         <div className="relative w-full">
-                            {/* Input + Search */}
+
                             <div
                                 className={`flex w-full relative rounded-lg transition-all duration-150 ${isSearchFocused ? "border-2 border-black" : "border border-transparent"
                                     }`}
                             >
-                                {/* Input */}
+
                                 <input
                                     type="text"
                                     placeholder="Shopee bao ship 0đ - Đăng ký ngay!"
@@ -250,14 +245,12 @@ export default function Header() {
                                     style={{ width: "calc(100% + 80px)" }}
                                 />
 
-                                {/* Nút search */}
                                 <button className="absolute top-1/2 right-[6px] -translate-y-1/2 bg-[#fb5533] py-1.5 px-4 rounded-[2px] flex items-center justify-center">
                                     <IoMdSearch size={24} color="white" />
                                 </button>
                             </div>
 
 
-                            {/* Label khi focus */}
                             {isSearchFocused && (
                                 <div className="absolute left-0 w-full bg-white border border-gray-300 rounded-b shadow mt-1 flex items-center justify-between px-4 py-2">
                                     <span className="text-black text-sm">
@@ -307,7 +300,6 @@ export default function Header() {
                             <FaShoppingCart className="mr-14 mb-2" size={24} color="white" />
                         </a>
 
-                        {/* Mũi tên tam giác */}
                         {showCartPopup && (
                             <div
                                 style={{
@@ -338,7 +330,6 @@ export default function Header() {
                                 animation: showCartPopup ? "zoomIn 0.2s forwards" : undefined,
                             }}
                         >
-                            {/* Ảnh no_cart.png */}
                             <div className="relative w-full h-24 mt-12 mb-4">
                                 <Image
                                     src="/no__cart.png"
@@ -351,7 +342,6 @@ export default function Header() {
                             <div>Chưa Có Sản Phẩm</div>
                         </div>
 
-                        {/* Animation keyframes */}
                         <style jsx>{`
               @keyframes zoomIn {
                 0% {

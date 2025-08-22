@@ -1,4 +1,5 @@
 "use client";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { useState, useMemo } from "react";
 import Image from "next/image";
@@ -7,6 +8,7 @@ import { HiLightningBolt } from "react-icons/hi";
 import { useRouter } from "next/navigation";
 import type { Product } from "@/app/types/product";
 import { ChevronDown, Star } from "lucide-react";
+import { FiFilter } from "react-icons/fi";
 export default function CategoryFilterBar() {
     const [active, setActive] = useState("popular");
     const router = useRouter();
@@ -50,46 +52,48 @@ export default function CategoryFilterBar() {
     }, [active]);
 
     return (
-        <div className="w-full bg-[rgba(0,0,0,0.03)] pb-1">
+        <div className="w-full bg-[rgba(0,0,0,0.03)] pb-20 border-b-[4px] border-red-500">
             <div className="mx-40">
                 <div className="flex min-h-screen">
-                    {/* Sidebar */}
-                    <aside className="w-1/6  p-4 text-sm">
-                        {/* Tất cả danh mục */}
+                    <aside className="w-1/6  pr-0 text-sm">
                         <h3 className="font-bold mb-2 flex items-center gap-2">
-                            <span className="text-lg">☰</span> Tất Cả Danh Mục
+                            <span className="text-[20px]">☰</span> Tất Cả Danh Mục
                         </h3>
                         <hr className="mb-2" />
-                        <ul className="space-y-1">
-                            <li className="text-red-500 font-semibold">Thời Trang Nam</li>
-                            <li>Áo Khoác</li>
-                            <li>Áo Vest và Blazer</li>
-                            <li>Áo Hoodie, Áo Len & Áo Nỉ</li>
-                            <li>Quần Jeans</li>
-                            <li>Quần Dài/Quần Âu</li>
+                        <ul className="space-y-3 ">
+                            <li className="relative pl-3 text-red-500 font-semibold before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-0 before:h-0 before:border-t-4 before:border-b-4 before:border-l-4 before:border-t-transparent before:border-b-transparent before:border-l-orange-500">
+                                Thời Trang Nam
+                            </li>
+
+                            <li className="pl-3">Áo Khoác</li>
+                            <li className="pl-3">Áo Vest và Blazer</li>
+                            <li className="pl-3">Áo Hoodie, Áo Len & Áo Nỉ</li>
+                            <li className="pl-3">Quần Jeans</li>
+                            <li className="pl-3">Quần Dài/Quần Âu</li>
                             {showMoreCategory && (
                                 <>
-                                    <li>Áo Polo</li>
-                                    <li>Phụ Kiện Nam</li>
+                                    <li className="pl-3">Áo Polo</li>
+                                    <li className="pl-3">Phụ Kiện Nam</li>
                                 </>
                             )}
-                            <li
-                                className="text-gray-500 flex items-center cursor-pointer"
-                                onClick={() => setShowMoreCategory(!showMoreCategory)}
-                            >
-                                Thêm <ChevronDown size={16} className="ml-1" />
-                            </li>
+                            {!showMoreCategory && (
+                                <li
+                                    className="text-gray-700  flex items-center cursor-pointer"
+                                    onClick={() => setShowMoreCategory(true)}
+                                >
+                                    Thêm <ChevronDown size={16} className="ml-1" />
+                                </li>
+                            )}
+
                         </ul>
 
-                        {/* Bộ lọc */}
-                        <div className="mt-5">
+                        <div className="mt-5 ">
                             <h3 className="font-bold mb-2 flex items-center gap-1">
-                                <span>🔍</span> BỘ LỌC TÌM KIẾM
+                                <FiFilter size={12} />  BỘ LỌC TÌM KIẾM
                             </h3>
 
-                            {/* Nơi bán */}
-                            <p className="font-semibold mb-2">Nơi Bán</p>
-                            <ul className="space-y-1">
+                            <p className=" mb-2">Nơi Bán</p>
+                            <ul className="space-y-3">
                                 <li>
                                     <label className="flex items-center gap-2">
                                         <input type="checkbox" /> Hà Nội
@@ -117,19 +121,21 @@ export default function CategoryFilterBar() {
                                         </label>
                                     </li>
                                 )}
-                                <li
-                                    className="text-gray-500 flex items-center cursor-pointer"
-                                    onClick={() => setShowMoreLocation(!showMoreLocation)}
-                                >
-                                    Thêm <ChevronDown size={16} className="ml-1" />
-                                </li>
+                                {!showMoreLocation && (
+                                    <li
+                                        className="text-gray-700 flex items-center cursor-pointer"
+                                        onClick={() => setShowMoreLocation(true)}
+                                    >
+                                        Thêm <ChevronDown size={16} className="ml-1" />
+                                    </li>
+                                )}
+
                             </ul>
 
                             <hr className="my-4" />
 
-                            {/* Đơn vị vận chuyển */}
-                            <p className="font-semibold mb-2">Đơn Vị Vận Chuyển</p>
-                            <ul className="space-y-1">
+                            <p className=" mb-2">Đơn Vị Vận Chuyển</p>
+                            <ul className="space-y-3">
                                 <li>
                                     <label className="flex items-center gap-2">
                                         <input type="checkbox" /> Nhanh
@@ -142,9 +148,8 @@ export default function CategoryFilterBar() {
                                 </li>
                             </ul> <hr className="my-4" />
 
-                            {/* Thương Hiệu */}
-                            <p className="font-semibold mb-2">Thương Hiệu</p>
-                            <ul className="space-y-1">
+                            <p className=" mb-2">Thương Hiệu</p>
+                            <ul className="space-y-3">
                                 <li>
                                     <label className="flex items-center gap-2">
                                         <input type="checkbox" /> AVOCADO
@@ -179,40 +184,41 @@ export default function CategoryFilterBar() {
                                         </li>
                                     </>
                                 )}
-                                <li
-                                    className="text-gray-500 flex items-center cursor-pointer"
-                                    onClick={() => setShowMoreBrand(!showMoreBrand)}
-                                >
-                                    Thêm <ChevronDown size={16} className="ml-1" />
-                                </li>
+                                {!showMoreBrand && (
+                                    <li
+                                        className="text-gray-700 flex items-center cursor-pointer"
+                                        onClick={() => setShowMoreBrand(true)}
+                                    >
+                                        Thêm <ChevronDown size={16} className="ml-1" />
+                                    </li>
+                                )}
+
                             </ul>
 
                             <hr className="my-4" />
 
-                            {/* Khoảng Giá */}
-                            <p className="font-semibold mb-2">Khoảng Giá</p>
+                            <p className=" mb-2">Khoảng Giá</p>
                             <div className="flex items-center gap-2 mb-2">
                                 <input
                                     type="text"
                                     placeholder="₫ TỪ"
-                                    className="border rounded px-2 py-1 w-1/2"
+                                    className="border  text-left bg-white rounded px-5 py-1 w-1/2"
                                 />
                                 <span>–</span>
                                 <input
                                     type="text"
                                     placeholder="₫ ĐẾN"
-                                    className="border rounded px-2 py-1 w-1/2"
+                                    className="border  text-left bg-white rounded px-5 py-1 w-1/2"
                                 />
                             </div>
-                            <button className="w-full bg-orange-500 text-white py-2 rounded">
+                            <button className="w-full bg-orange-600 cursor-pointer text-white py-1 mt-3 rounded">
                                 ÁP DỤNG
                             </button>
 
                             <hr className="my-4" />
 
-                            {/* Loại Shop */}
-                            <p className="font-semibold mb-2">Loại Shop</p>
-                            <ul className="space-y-1">
+                            <p className=" mb-2">Loại Shop</p>
+                            <ul className="space-y-3">
                                 <li>
                                     <label className="flex items-center gap-2">
                                         <input type="checkbox" /> Shopee Mall
@@ -240,21 +246,23 @@ export default function CategoryFilterBar() {
                                         </label>
                                     </li>
                                 )}
-                                <li
-                                    className="text-gray-500 flex items-center cursor-pointer"
-                                    onClick={() => setShowMoreShop(!showMoreShop)}
-                                >
-                                    Thêm <ChevronDown size={16} className="ml-1" />
-                                </li>
+                                {!showMoreShop && (
+                                    <li
+                                        className="text-gray-700 flex items-center cursor-pointer"
+                                        onClick={() => setShowMoreShop(true)}
+                                    >
+                                        Thêm <ChevronDown size={16} className="ml-1" />
+                                    </li>
+                                )}
+
                             </ul>
 
                             <hr className="my-4" />
 
-                            {/* Tình Trạng */}
-                            <p className="font-semibold mb-2">Tình Trạng</p>
-                            <ul className="space-y-1">
+                            <p className=" mb-2 ">Tình Trạng</p>
+                            <ul className="space-y-3 ">
                                 <li>
-                                    <label className="flex items-center gap-2">
+                                    <label className="flex items-center gap-2 ">
                                         <input type="checkbox" /> Mới
                                     </label>
                                 </li>
@@ -266,39 +274,40 @@ export default function CategoryFilterBar() {
                             </ul>
                             <hr className="my-4" />
 
-                            {/* Đánh Giá */}
-                            <p className="font-semibold mb-2">Đánh Giá</p>
+                            <p className=" mb-2">Đánh Giá</p>
                             <ul className="space-y-2 mb-2">
                                 <li className="flex items-center gap-2 cursor-pointer">
-                                    <span className="text-yellow-500">★★★★★</span> trở lên
+                                    <span className="text-yellow-500 text-[20px] ml-3">★★★★★</span> trở lên
                                 </li>
                                 <li className="flex items-center gap-2 cursor-pointer">
-                                    <span className="text-yellow-500">★★★★☆</span> trở lên
+                                    <span className="text-yellow-500 text-[20px] ml-3">★★★★☆</span> trở lên
                                 </li>
                                 <li className="flex items-center gap-2 cursor-pointer">
-                                    <span className="text-yellow-500">★★★☆☆</span> trở lên
+                                    <span className="text-yellow-500 text-[20px] ml-3">★★★☆☆</span> trở lên
                                 </li>
                                 <li className="flex items-center gap-2 cursor-pointer">
-                                    <span className="text-yellow-500">★★☆☆☆</span> trở lên
+                                    <span className="text-yellow-500 text-[20px] ml-3">★★☆☆☆</span> trở lên
                                 </li>
                                 {showMoreRating && (
                                     <li className="flex items-center gap-2 cursor-pointer">
-                                        <span className="text-yellow-500">★☆☆☆☆</span> trở lên
+                                        <span className="text-yellow-500 text-[20px] ml-3">★☆☆☆☆</span> trở lên
                                     </li>
                                 )}
-                                <li
-                                    className="text-gray-500 flex items-center cursor-pointer"
-                                    onClick={() => setShowMoreRating(!showMoreRating)}
-                                >
-                                    Thêm <ChevronDown size={16} className="ml-1" />
-                                </li>
+                                {!showMoreRating && (
+                                    <li
+                                        className="text-gray-700 flex items-center cursor-pointer ml-6"
+                                        onClick={() => setShowMoreRating(true)}
+                                    >
+                                        Thêm <ChevronDown size={16} className="ml-1" />
+                                    </li>
+                                )}
+
                             </ul>
 
                             <hr className="my-4" />
 
-                            {/* Dịch Vụ & Khuyến Mãi */}
-                            <p className="font-semibold mb-2 ">Dịch Vụ & Khuyến Mãi</p>
-                            <ul className="space-y-1">
+                            <p className="mb-2 ">Dịch Vụ & Khuyến Mãi</p>
+                            <ul className="space-y-3">
                                 <li>
                                     <label className="flex items-center gap-2">
                                         <input type="checkbox" /> Đang giảm giá
@@ -326,25 +335,26 @@ export default function CategoryFilterBar() {
                                         </label>
                                     </li>
                                 )}
-                                <li
-                                    className="text-gray-500 flex items-center cursor-pointer border-b border-gray-300"
-                                    onClick={() => setShowMorePromo(!showMorePromo)}
-                                >
-                                    Thêm <ChevronDown size={16} className="ml-1" />
-                                </li>
+                                {!showMorePromo && (
+                                    <li
+                                        className="text-gray-700 flex items-center cursor-pointer border-b pb-6 pl-5 border-gray-300"
+                                        onClick={() => setShowMorePromo(true)}
+                                    >
+                                        Thêm <ChevronDown size={16} className="ml-1" />
+                                    </li>
+                                )}
+
                             </ul>
 
                             <div className="mt-6">
-                                <button className="w-full bg-orange-500 text-white py-2 rounded">
+                                <button className="w-full cursor-pointer bg-orange-600 text-white py-1.5 rounded">
                                     XÓA TẤT CẢ
                                 </button>
                             </div>
                         </div>
                     </aside>
 
-                    {/* Main */}
                     <main className="w-5/6 p-4">
-                        {/* Thanh sắp xếp */}
                         <div className="flex items-center bg-[#00000008] px-4 py-3 space-x-3 mb-4">
                             <span className="text-[14px] text-gray-600">Sắp xếp theo</span>
                             <button
@@ -387,21 +397,41 @@ export default function CategoryFilterBar() {
                                 <option value="price-asc">Giá: Thấp đến Cao</option>
                                 <option value="price-desc">Giá: Cao đến Thấp</option>
                             </select>
+                            <div className="flex items-center ml-auto overflow-hidden">
+                                <div className="mr-4 text-[14px]">
+                                    <span className="text-red-500">
+                                        1</span>
+                                    <span>/8</span>
+                                </div>
+                                <button
+                                    className="border border-gray-200 bg-gray-100 p-2"
+
+                                >
+                                    <ChevronLeft size={18} />
+                                </button>
+
+                                <button
+                                    className="border border-gray-100 bg-[#ffffff] p-2"
+
+                                >
+                                    <ChevronRight size={18} />
+                                </button>
+                            </div>
 
 
                         </div>
 
-                        {/* Grid sản phẩm */}
+
                         <div className="grid grid-cols-5 gap-3 pb-6">
                             {filteredProducts.map((product) => (
                                 <div
                                     key={product.id}
                                     onClick={() => handleClick(product.id)}
                                     className="group relative flex flex-col bg-white border border-gray-200 
-               hover:border-red-500 transition-all duration-200 
+                transition-all duration-200 
                hover:-translate-y-[1px] overflow-visible hover:z-50"
                                 >
-                                    {/* Hình ảnh */}
+
                                     <div className="relative w-full aspect-square">
                                         <Image
                                             src={product.img}
@@ -411,7 +441,7 @@ export default function CategoryFilterBar() {
                                         />
                                     </div>
 
-                                    {/* Tên */}
+
                                     <div className="p-2 flex-grow">
                                         <div className="text-[#555] text-[14px] text-left line-clamp-2 transition-transform duration-200 group-hover:translate-y-[-1px]">
                                             <span className="bg-red-500 text-white text-[10px] px-1 py-0.5 rounded-[2px] mr-1 align-middle">
@@ -421,7 +451,7 @@ export default function CategoryFilterBar() {
                                         </div>
                                     </div>
 
-                                    {/* Status */}
+
                                     <div className="flex items-center space-x-1">
                                         {product.status === "Đang bán chạy" ? (
                                             <>
@@ -437,25 +467,27 @@ export default function CategoryFilterBar() {
                                         ) : null}
                                     </div>
 
-                                    {/* Giá */}
+
                                     <div className="text-left ml-2 text-red-400 text-lg mt-2">
                                         {product.price}
                                     </div>
 
-                                    {/* Label hover */}
-                                    <div className="absolute left-0 right-0 -bottom-[30px] 
+
+                                    {/* <div className="absolute left-0 right-0 -bottom-[30px] 
                     bg-orange-600 text-white text-center text-[12px] py-1.5
                     opacity-0 group-hover:opacity-100 
                     transition-all duration-300 z-50">
                                         {product.label}
-                                    </div>
+                                    </div> */}
                                 </div>
                             ))}
 
                         </div>
 
-                        <div className="mx-auto text-[14px] text-gray-600 inline-block px-4 py-2 bg-white hover:bg-gray-100 cursor-pointer transition-colors duration-200 rounded">
-                            Login To See More
+                        <div className="flex justify-center py-4">
+                            <div className="text-[14px] text-gray-600 inline-block px-4 py-2 bg-white hover:bg-gray-100 cursor-pointer transition-colors duration-200 rounded">
+                                Login To See More
+                            </div>
                         </div>
                     </main>
                 </div>

@@ -27,7 +27,6 @@ export default function CategoryList() {
             <div className="relative bg-white mx-40 h-[370px] group">
                 <h2 className="text-lg text-gray-500 mb-4 px-4 pt-4">DANH MỤC</h2>
 
-                {/* Phần overflow-hidden chỉ bọc phần slide thôi */}
                 <div className="overflow-hidden">
                     <div
                         className="flex transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]"
