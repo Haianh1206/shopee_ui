@@ -18,7 +18,7 @@ interface MyJwtPayload extends JwtPayload {
 
 const router = Router();
 
-// 1. Gửi OTP (random)
+
 router.post("/register/send-otp", async (req: Request, res: Response) => {
   const { phone } = req.body;
   if (!phone) return res.status(400).json({ message: "Số điện thoại bắt buộc" });
@@ -30,7 +30,7 @@ router.post("/register/send-otp", async (req: Request, res: Response) => {
 
   if (rows.length > 0) return res.status(400).json({ message: "Số điện thoại đã đăng ký" });
 
-  // tạo OTP random 6 chữ số
+ 
   const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
   await pool.query(
@@ -42,7 +42,7 @@ router.post("/register/send-otp", async (req: Request, res: Response) => {
   return res.json({ message: "OTP đã gửi", otp });
 });
 
-// 2. Xác thực OTP & tạo user
+
 router.post("/register/verify-otp", async (req: Request, res: Response) => {
   const { phone, otp } = req.body;
 
@@ -55,7 +55,7 @@ router.post("/register/verify-otp", async (req: Request, res: Response) => {
     return res.status(400).json({ message: "OTP không hợp lệ" });
   }
 
-  // kiểm tra nếu user chưa tồn tại
+
   const [existingUser] = await pool.query<User[]>(
     "SELECT * FROM users WHERE phone = ?",
     [phone]
@@ -68,7 +68,7 @@ router.post("/register/verify-otp", async (req: Request, res: Response) => {
   return res.json({ message: "OTP hợp lệ, vui lòng đặt mật khẩu" });
 });
 
-// 3. Đặt mật khẩu lần đầu
+
 router.post("/set-password", async (req: Request, res: Response) => {
   const { phone, password } = req.body;
   if (!password) return res.status(400).json({ message: "Mật khẩu không được để trống" });
@@ -79,7 +79,7 @@ router.post("/set-password", async (req: Request, res: Response) => {
   res.json({ message: "Mật khẩu đã được đặt thành công" });
 });
 
-// 4. Đăng nhập
+
 router.post("/login", async (req: Request, res: Response) => {
   try {
     const { username, password } = req.body;
