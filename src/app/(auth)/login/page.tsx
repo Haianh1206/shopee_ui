@@ -1,6 +1,9 @@
 "use client";
+
 import { useState } from "react";
 import { FaFacebook } from 'react-icons/fa';
+import { useRouter } from "next/navigation";
+
 import { FcGoogle } from 'react-icons/fc';
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 export default function ShopeeRegister() {
@@ -10,8 +13,32 @@ export default function ShopeeRegister() {
     const validatePhone = (value: string): boolean => {
         return value.trim() !== "";
     };
-
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const router = useRouter();
+    const login = async () => {
+        try {
+            const res = await fetch("http://localhost:5000/api/auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password }),
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                localStorage.setItem("token", data.token);
+                router.push("/");
+            } else {
+                alert(data.message || "Đăng nhập thất bại");
+            }
+        } catch (error) {
+            console.error("Lỗi khi gọi API:", error);
+            alert("Không thể kết nối server");
+        }
+    };
+
+
     const [showPassword, setShowPassword] = useState(false);
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value: string = e.target.value;
@@ -115,11 +142,11 @@ export default function ShopeeRegister() {
                             <>
                                 <input
                                     type="text"
-                                    value={phone}
-                                    onChange={handleChange}
-                                    placeholder="Email/Số điện thoại/Tên đăng nhập"
-                                    className={`w-full mt-2 border px-4 py-1.5 mb-2 rounded-[2px] focus:border-black ${error ? "border-red-500 text-gray-600" : "border-gray-300 text-gray-700"
-                                        }`}
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)} placeholder="Email/Số điện thoại/Tên đăng nhập"
+                                    className={`w-full border px-4 py-2 mt-4 mb-2 rounded-[2px] 
+    ${error ? "border-red-500 text-gray-600" : "border-gray-300 text-gray-700"} 
+    focus:border-black focus:outline-none`}
                                 />
                                 {error && <p className="text-red-500 text-[12px] mb-4">{error}</p>}
 
@@ -127,10 +154,16 @@ export default function ShopeeRegister() {
                                     <input
                                         type={showPassword ? "text" : "password"}
                                         value={password}
-                                        onChange={handleChange2}
+                                        onChange={(e) => setPassword(e.target.value)}
                                         placeholder="Mật khẩu"
-                                        className="w-full border px-4 py-1.5 rounded-[2px] focus:border-black pr-10"
-                                    />
+                                        className="
+  w-full
+  border border-gray-300
+  px-4 py-1.5 mb-2
+  rounded-[2px]
+  text-gray-700
+  focus:outline-none focus:border-black
+"                                    />
                                     <button
                                         type="button"
                                         onClick={() => setShowPassword(!showPassword)}
@@ -145,7 +178,7 @@ export default function ShopeeRegister() {
                                 </div>
 
 
-                                <button className="w-full mt-6 bg-[#EE4D2D] opacity-70 text-white py-2 font-medium rounded-[2px] ">
+                                <button onClick={login} className="w-full mt-6 bg-[#EE4D2D] opacity-70 text-white py-2 font-medium rounded-[2px] ">
                                     ĐĂNG NHẬP
                                 </button>
                                 <div className="text-[#0055AA] text-[12px] mt-2">Quên mật khẩu?</div>

@@ -1,62 +1,33 @@
 "use client";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { FaFacebook } from 'react-icons/fa';
-import { FcGoogle } from 'react-icons/fc';
-export default function ShopeeRegister() {
-    const [phone, setPhone] = useState("");
-    const [error, setError] = useState("");
-    const [otp, setOtp] = useState("");
-    const [step, setStep] = useState(1);
 
-    const sendOtp = async () => {
-        const res = await fetch("http://localhost:5000/api/auth/register/send-otp", {
+export default function SetPasswordPage() {
+    const params = useSearchParams();
+    const phone = params.get("phone") || "";
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
+    const setPass = async () => {
+        if (password !== confirmPassword) {
+            alert("Mật khẩu và xác nhận mật khẩu không khớp");
+            return;
+        }
+
+        const res = await fetch("http://localhost:5000/api/auth/set-password", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ phone }),
+            body: JSON.stringify({ phone, password }),
         });
+
         const data = await res.json();
         if (res.ok) {
-            alert("OTP (fake): " + data.otp);
-            setStep(2);
+            alert("Mật khẩu đã đặt thành công");
+            window.location.href = "/login";
         } else {
             alert(data.message);
         }
     };
-
-    const verifyOtp = async () => {
-        const res = await fetch("http://localhost:5000/api/auth/register/verify-otp", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ phone, otp }),
-        });
-        const data = await res.json();
-        if (res.ok) {
-            alert("Xác thực OTP thành công");
-            window.location.href = `/set-password?phone=${phone}`;
-        } else {
-            alert(data.message);
-        }
-    };
-
-    const validatePhone = (value: string): boolean => {
-        const regex = /^(0\d{9,10})$/;
-        return regex.test(value);
-    };
-
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value: string = e.target.value.replace(/\D/g, "");
-        setPhone(value);
-
-        if (value === "") {
-            setError("");
-        } else if (!validatePhone(value)) {
-            setError("Số điện thoại không hợp lệ");
-        } else {
-            setError("");
-        }
-    };
-
     return (
         <div>
             <div className="flex items-center w-full px-46 h-[80px]">
@@ -95,97 +66,47 @@ export default function ShopeeRegister() {
 
                 <div className="flex justify-center items-center w-[40%]">
                     <div className="bg-white p-8 rounded-sm shadow-md w-[380px]">
-                        <h2 className="text-xl mb-6">Đăng ký</h2>
+                        <div className="p-4 max-w-md mx-auto">
+                            <h2 className="text-[20px] mb-4">Đặt mật khẩu</h2>
+                            <input
+                                type="password"
+                                placeholder="Nhập mật khẩu"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="
+  w-full
+  border border-gray-300
+  px-4 py-2 mb-2
+  rounded-[2px]
+  text-gray-700
+  focus:outline-none focus:border-black
+"
+                            />
 
-                        <input
-                            type="text"
-                            value={phone}
-                            onChange={handleChange}
-                            placeholder="Số điện thoại"
-                            className={`w-full border px-4 py-2 mb-2 rounded-[2px] 
-    ${error ? "border-red-500 text-gray-600" : "border-gray-300 text-gray-700"} 
-    focus:border-black focus:outline-none`}
-                        />
+                            <input
+                                type="password"
+                                placeholder="Nhập lại mật khẩu"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                className="
+  w-full
+  border border-gray-300
+  px-4 py-2 mb-2
+  rounded-[2px]
+  text-gray-700
+  focus:outline-none focus:border-black
+"
 
-                        <button
-                            onClick={() => {
-                                if (!validatePhone(phone)) {
-                                    setError("Số điện thoại không hợp lệ");
-                                    return;
-                                }
-                                sendOtp();
-                            }}
-                            className="bg-orange-500 mb-4 text-white px-4 py-2 mt-2"
-                        >
-                            Gửi OTP
-                        </button>
-
-                        {step === 2 && (
-                            <>
-                                <h2>Nhập OTP</h2>
-                                <div className="flex items-center mb-2">
-                                    <input
-                                        type="text"
-                                        placeholder="OTP"
-                                        value={otp}
-                                        onChange={(e) => setOtp(e.target.value)}
-                                        className={`w-32 border px-4 w-[170px] py-2 rounded-[2px] 
-        ${error ? "border-red-500 text-gray-600" : "border-gray-300 text-gray-700"} 
-        focus:border-black focus:outline-none`}
-                                    />
-                                    <button
-                                        onClick={verifyOtp}
-                                        className="bg-green-500 text-white px-4 py-2 ml-2 rounded"
-                                    >
-                                        Xác nhận OTP
-                                    </button>
-                                </div>
-                            </>
-
-                        )}
-                        {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-
-                        <button className="w-full bg-[#EE4D2D] opacity-70 text-white py-2 font-medium rounded-[2px] ">
-                            TIẾP THEO
-                        </button>
-
-                        <div className="flex items-center my-6">
-                            <div className="flex-grow h-px bg-gray-200"></div>
-                            <span className="px-2 text-gray-300 text-sm">HOẶC</span>
-                            <div className="flex-grow h-px bg-gray-200"></div>
-                        </div>
-
-                        <div className="flex gap-3">
-                            <button className="flex items-center justify-center gap-2 w-1/2 border border-gray-300 py-2 rounded-[2px] text-sm font-medium bg-white hover:bg-gray-50">
-                                <FaFacebook color="blue" size={24} />
-                                Facebook
-                            </button>
-                            <button className="flex items-center justify-center gap-2 w-1/2 border border-gray-300 py-2 rounded-[2px] text-sm font-medium bg-white hover:bg-gray-50">
-                                <FcGoogle size={24} />                                Google
+                            />
+                            <button onClick={setPass} className="bg-orange-500 text-white px-4 py-2 mt-2">
+                                Đặt mật khẩu
                             </button>
                         </div>
-
-                        <p className="text-[12px] w-[280px] ml-6 text-center text-gray-500 mt-6 leading-4">
-                            Bằng việc đăng kí, bạn đã đồng ý với Shopee về{" "}
-                            <span className="text-[#EE4D2D] cursor-pointer">
-                                Điều khoản dịch vụ
-                            </span>{" "}
-                            &{" "}
-                            <span className="text-[#EE4D2D] cursor-pointer">
-                                Chính sách bảo mật
-                            </span>
-                        </p>
-
-
-                        <p className="text-[14px] text-center text-gray-300 mt-4">
-                            Bạn đã có tài khoản?{" "}
-                            <a href="/login" className="text-[#EE4D2D] font-medium">
-                                Đăng nhập
-                            </a>
-                        </p>
                     </div>
                 </div>
             </div>
         </div>
     );
+
+
 }
