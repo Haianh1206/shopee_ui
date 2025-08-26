@@ -3,7 +3,7 @@ import React from "react";
 export default function ShopeePage() {
     return (
         <div>
-            <div className="py-4 max-w-full mx-40 pt-18 space-y-3.5 text-xs pb-16 border-b border-gray-300">
+            <div className="py-4 max-w-full px-4 bg-[rgba(0,0,0,0.03)] sm:bg-transparent sm:mx-40 pt-6 sm:pt-18 space-y-3.5 text-xs sm:pb-16 sm:border-b border-gray-300">
                 <h1 className="font-bold text-sm">
                     SHOPEE - GÌ CŨNG CÓ, MUA HẾT Ở SHOPEE
                 </h1>
@@ -99,10 +99,10 @@ export default function ShopeePage() {
 
 
             </div>
-            <div className="py-4 pb-18 max-w-full mx-40 pt-18 space-y-3.5 text-xs pt-16 ">
+            <div className="hidden sm:flex py-4 pb-18 max-w-full mx-40 pt-18 space-y-3.5 text-xs pt-16 ">
                 <h2 className="font-bold text-[#0000008A] text-[14px] mb-4">Danh Mục</h2>
 
-                <div className="grid grid-cols-5 gap-6 text-sm text-gray-700 leading-relaxed">
+                <div className=" grid grid-cols-5 gap-6 text-sm text-gray-700 leading-relaxed">
 
                     <div>
                         <h3 className="font-bold text-[#0000008A] text-[12px] mb-1">THỜI TRANG NAM</h3>

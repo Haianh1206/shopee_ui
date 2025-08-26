@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { products } from "@/app/data/products"
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
 import { HiLightningBolt } from "react-icons/hi";
 import { useRouter } from "next/navigation";
@@ -16,15 +17,24 @@ export default function FlashSale() {
     };
 
     return (
-        <div className="w-full bg-[rgba(0,0,0,0.03)] pb-18 text-center pb-6 border-b-[4px] border-red-500">
-            <div className="mx-40">
-                <div className="bg-white text-center mb-4 border-b-[4px] border-red-500">
+        <div className="w-full bg-[rgba(0,0,0,0.03)] sm:pb-18 text-center pb-6 sm:border-b-[4px] border-red-500">
+            <div className="sm:mx-40 sm:bg-transparent">
+                <div className="hidden sm:flex bg-white text-center mb-4 border-b-[4px] border-red-500">
                     <h2 className="text-lg text-[16px] text-orange-500 mb-4 px-4 pt-4">
                         GỢI Ý HÔM NAY
                     </h2>
                 </div>
+                <div className="flex bg-white  sm:hidden items-center pl-3 pr-1 h-10  justify-between pb-4 pt-2">
+                    <h2 className="flex sm:hidden text-md text-orange-600  pt-2">GỢI Ý HÔM NAY</h2>
+                    <button className="flex items-center cursor-pointer text-gray-600 text-xs font-medium">
+                        Xem thêm
+                        <span className="ml-1 p-1 flex items-center justify-center">
+                            <IoIosArrowForward className="text-gray" size={12} />
 
-                <div className="grid grid-cols-6 gap-3 px-4 pb-6 ">
+                        </span>
+                    </button>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 sm:gap-3 px-2 sm:px-4 pb-6">
                     {products.map((product) => (
                         <div
                             key={product.id}

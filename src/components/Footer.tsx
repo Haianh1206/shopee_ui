@@ -1,9 +1,14 @@
 import { FaFacebook, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import Image from "next/image";
+import { FaLock } from "react-icons/fa";
+import { FaTruck } from "react-icons/fa";
+import { FaBullhorn } from "react-icons/fa";
+import { FaBook } from "react-icons/fa";
+
 export default function Footer() {
     return (
-        <footer className=" bg-[rgba(0,0,0,0.01)] mt-10">
-            <div className="  max-w-7xl mx-42 py-10 grid grid-cols-5 gap-6 border-b border-gray-200 text-sm text-gray-700">
+        <footer className=" bg-[rgba(0,0,0,0.01)] sm:mt-10">
+            <div className=" hidden sm:grid max-w-7xl mx-42 py-10 grid grid-cols-5 gap-6 border-b border-gray-200 text-sm text-gray-700">
                 <div>
                     <h3 className="font-bold mb-3 text-[12px] uppercase">Dịch Vụ Khách Hàng</h3>
                     <ul className="space-y-2">
@@ -94,7 +99,7 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className=" py-10  px-42 text-[#0000008A] text-[14px] flex flex-wrap justify-between items-center">
+            <div className="hidden sm:flex py-10  px-42 text-[#0000008A] text-[14px] flex flex-wrap justify-between items-center">
                 <div>© 2025 Shopee. Tất cả các quyền được bảo lưu.</div>
                 <div className=" flex flex-wrap items-center">
                     <span className="text-[#0000008A] text-[14px]">Quốc gia &amp; Khu vực:</span>
@@ -121,36 +126,61 @@ export default function Footer() {
                     <span className="text-[#0000008A] text-[14px] cursor-pointer">Đài Loan</span>
                 </div>
             </div>
-            <div className="bg-[rgba(0,0,0,0.03)] text-center text-xs text-gray-600 py-5 pb-10">
-                <div className="flex text-gray-500 justify-center space-x-6 mt-6 mb-8">
+            <div className="bg-[rgba(0,0,0,0.03)] text-center text-xs text-gray-600 py-5 sm:pb-10">
+
+                <div className="sm:hidden grid grid-cols-2 py-2 border-b border-gray-300 gap-y-2 gap-x-4 text-gray-500 text-center bg-white mt-6 mb-8 px-4">
+                    <div className="flex items-center justify-center space-x-2">
+                        <FaLock className="text-gray-400 text-sm" />
+                        <span className="cursor-pointer text-gray-400 text-[10px]">CHÍNH SÁCH BẢO MẬT</span>
+                    </div>
+                    <div className="flex items-center justify-center space-x-2">
+                        <FaBook className="text-gray-400 text-sm" />
+                        <span className="cursor-pointer text-gray-400 text-[10px]">QUY CHẾ HOẠT ĐỘNG</span>
+                    </div>
+                    <div className="flex items-center justify-center space-x-2">
+                        <FaTruck className="text-gray-400 text-sm" />
+                        <span className="cursor-pointer text-gray-400 text-[10px]">CHÍNH SÁCH VẬN CHUYỂN</span>
+                    </div>
+                    <div className="flex items-center justify-center space-x-2">
+                        <FaBullhorn className="text-gray-400 " size={24} />
+                        <span className="cursor-pointer text-gray-400 text-[10px]">CHÍNH SÁCH TRẢ HÀNG VÀ HOÀN TIỀN</span>
+                    </div>
+                </div>
+
+
+                <div className="hidden sm:flex text-gray-500 justify-center space-x-6 mt-6 mb-8">
                     <span className=" cursor-pointer">CHÍNH SÁCH BẢO MẬT</span><span className="text-gray-300">|</span>
                     <span className=" cursor-pointer">QUY CHẾ HOẠT ĐỘNG</span>   <span className="text-gray-300">|</span>
                     <span className=" cursor-pointer">CHÍNH SÁCH VẬN CHUYỂN</span><span className="text-gray-300">|</span>
                     <span className=" cursor-pointer">CHÍNH SÁCH TRẢ HÀNG VÀ HOÀN TIỀN</span>
                 </div>
-                <div className="flex justify-center space-x-4 mb-4">
-                    <img src="/logoCCDV.png" alt="Đã đăng ký 1" className="h-10" />
-                    <img src="/logoCCDV.png" alt="Đã đăng ký 2" className="h-10 mx-8" />
-                    <Image
-                        src="/logovantay.png"
-                        alt="logo"
-                        width={50}
-                        height={90}
-                        priority
-                    />
+                <div className="flex sm:hidden grid grid-cols-2 justify-center items-center sm:gap-4 mb-4">
+                    <img src="/logoCCDV.png" alt="Đã đăng ký 1" className="h-10 mx-auto" />
+                    <img src="/logoCCDV.png" alt="Đã đăng ký 2" className="h-10 mx-auto" />
+                    <div className="col-span-2 sm:col-span-1 flex justify-center mt-2 sm:mt-0">
+                        <Image
+                            src="/logovantay.png"
+                            alt="logo"
+                            width={70}
+                            height={120}
+                            className="sm:w-[50px] sm:h-[90px]"
+                            priority
+                        />
+                    </div>
                 </div>
-                <div className="mb-5">Công ty TNHH Shopee</div>
-                <div className="max-w-6xl mx-auto mb-1">
-                    Địa chỉ: Tầng 4-5-6, Tòa nhà Capital Place, số 29 đường Liễu Giai, Phường Ngọc Khánh,
-                    Quận Ba Đình, Thành phố Hà Nội, Việt Nam. Chăm sóc khách hàng: Gọi tổng đài Shopee
-                    (miễn phí) hoặc Trò chuyện với Shopee ngay trên Trung tâm trợ giúp
-                </div>
-                <div className="mb-2">Chịu Trách Nhiệm Quản Lý Nội Dung: Nguyễn Bùi Anh Tuấn</div>
-                <div className="mb-2">
-                    Mã số doanh nghiệp: 0106773786 do Sở Kế hoạch và Đầu tư TP Hà Nội cấp lần đầu ngày
-                    10/02/2015
-                </div>
-                <div>© 2015 - Bản quyền thuộc về Công ty TNHH Shopee</div>
+                <div className="text-[10px] text-black sm:text-[12px] sm:text-gray-600">
+                    <div className="mb-5">Công ty TNHH Shopee</div>
+                    <div className="max-w-6xl mx-auto mb-1">
+                        Địa chỉ: Tầng 4-5-6, Tòa nhà Capital Place, số 29 đường Liễu Giai, Phường Ngọc Khánh,
+                        Quận Ba Đình, Thành phố Hà Nội, Việt Nam. Chăm sóc khách hàng: Gọi tổng đài Shopee
+                        (miễn phí) hoặc Trò chuyện với Shopee ngay trên Trung tâm trợ giúp
+                    </div>
+                    <div className="mb-2">Chịu Trách Nhiệm Quản Lý Nội Dung: Nguyễn Bùi Anh Tuấn</div>
+                    <div className="mb-2">
+                        Mã số doanh nghiệp: 0106773786 do Sở Kế hoạch và Đầu tư TP Hà Nội cấp lần đầu ngày
+                        10/02/2015
+                    </div>
+                    <div>© 2015 - Bản quyền thuộc về Công ty TNHH Shopee</div></div>
             </div>
         </footer>
     );

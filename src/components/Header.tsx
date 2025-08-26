@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { FaUser, FaUserCircle } from "react-icons/fa";
 import {
     IoMdSearch,
     IoMdNotificationsOutline,
@@ -42,12 +43,13 @@ export default function Header() {
 
     return (
         <header
-            className={`${isProductDetail ? "relative" : "fixed"} top-0 left-0 w-full z-50 px-[140px] h-[120px]
-      bg-gradient-to-b from-[#ee4d2d] to-[#ff7337] text-white shadow`}
+            className={`${isProductDetail ? "relative" : "fixed"} top-0 left-0 w-full z-50 px-0 sm:px-6 lg:px-[140px] h-[56px] sm:h-[120px]
+bg-gradient-to-b from-[#ee4d2d] to-[#ff7337] text-white shadow`}
+
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                <div className="flex justify-between items-center text-sm h-[40px] border-white/20">
+                <div className="hidden sm:flex flex justify-between items-center text-sm h-[40px] border-white/20">
                     <div className="flex">
                         <Link
                             href="#"
@@ -120,7 +122,7 @@ export default function Header() {
                         </span>
                     </div>
 
-                    <div className="flex gap-2">
+                    <div className="hidden sm:flex flex gap-2">
                         <div className="flex flex-row hover:opacity-70">
                             <IoMdNotificationsOutline size={16} color="white" />
                             <Link href="#" className="text-[13px] mx-1">
@@ -213,9 +215,9 @@ export default function Header() {
                 </div>
 
                 {/* Middle bar */}
-                <div className="flex justify-between items-center h-[80px]">
+                <div className="flex sm:justify-between items-center h-[56px] sm:h-[80px]">
                     {/* Logo */}
-                    <div className="flex items-center mb-2 gap-2">
+                    <div className="hidden sm:flex flex items-center mb-2 gap-2">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 200 75"
@@ -232,22 +234,41 @@ export default function Header() {
                         <div className="relative w-full">
 
                             <div
-                                className={`flex w-full relative rounded-lg transition-all duration-150 ${isSearchFocused ? "border-2 border-black" : "border border-transparent"
+                                className={`flex -left-10 sm:left-0 w-[350px] sm:w-full relative rounded-lg transition-all duration-150 ${isSearchFocused ? "border-2 border-black" : "border border-transparent"
                                     }`}
                             >
+                                <button className="flex sm:hidden absolute z-50 top-1/2 -left-[0px] -translate-y-1/2 py-1.5 px-2 rounded-[2px] items-center justify-center">
+                                    <IoMdSearch size={20} color="gray" />
+                                </button>
 
                                 <input
                                     type="text"
                                     placeholder="Shopee bao ship 0đ - Đăng ký ngay!"
                                     onFocus={() => setIsSearchFocused(true)}
                                     onBlur={() => setIsSearchFocused(false)}
-                                    className="m-[4px] pl-6  py-2.5 bg-white rounded-[2px] text-black text-sm outline-none"
-                                    style={{ width: "calc(100% + 80px)" }}
+                                    className="
+                                        m-[4px] pl-6 py-1 sm:py-2.5 bg-white rounded-[2px] outline-none
+                                        text-red-700 text-lg
+                                        sm:text-black sm:text-sm
+                                        w-[calc(100%+80px)] sm:w-full
+                                      sm:translate-x-0
+                                        transform
+                                        truncate placeholder:truncate placeholder:overflow-ellipsis placeholder:whitespace-nowrap
+                                    "
                                 />
+                                <div className="flex sm:hidden items-center justify-center"><a href="#">
+                                    <FaShoppingCart className="ml-4" size={24} color="white" />
+                                </a></div>
+                                <div className="flex sm:hidden items-center justify-center"><a href="#">
+                                    <FaUserCircle className="ml-4" size={24} color="white" />
+                                </a></div>
 
-                                <button className="absolute top-1/2 right-[6px] -translate-y-1/2 bg-[#fb5533] py-1.5 px-4 rounded-[2px] flex items-center justify-center">
+
+
+                                <button className="hidden sm:flex absolute top-1/2 right-[6px] -translate-y-1/2 bg-[#fb5533] py-1.5 px-4 rounded-[2px] items-center justify-center">
                                     <IoMdSearch size={24} color="white" />
                                 </button>
+
                             </div>
 
 
@@ -267,7 +288,7 @@ export default function Header() {
                             )}
                         </div>
 
-                        <div className="flex flex-wrap gap-x-4 ml-1 gap-y-1 mt-1 text-xs text-white">
+                        <div className="hidden sm:flex flex flex-wrap gap-x-4 ml-1 gap-y-1 mt-1 text-xs text-white">
                             <Link className="mt-1" href="">
                                 Baby Tee Ôm Eo
                             </Link>
@@ -297,7 +318,7 @@ export default function Header() {
                         onMouseMove={handleCartMouseMove}
                     >
                         <a href="#">
-                            <FaShoppingCart className="mr-14 mb-2" size={24} color="white" />
+                            <FaShoppingCart className="mr-14 mb-2 " size={24} color="white" />
                         </a>
 
                         {showCartPopup && (
@@ -321,8 +342,8 @@ export default function Header() {
                         {/* Popup label */}
                         <div
                             className={`absolute top-full -left-90 mt-2 h-[250px] w-[400px] bg-white rounded shadow-xl p-3 text-center text-sm text-black
-        transition-transform transition-opacity duration-200 z-[9999]
-        ${showCartPopup ? "opacity-100 visible" : "opacity-0 invisible"}`}
+                            transition-transform transition-opacity duration-200 z-[9999]
+                            ${showCartPopup ? "opacity-100 visible" : "opacity-0 invisible"}`}
                             style={{
                                 transformOrigin: "right top",
                                 transform: showCartPopup ? "scale(1)" : "scale(0.7)",
@@ -343,17 +364,17 @@ export default function Header() {
                         </div>
 
                         <style jsx>{`
-              @keyframes zoomIn {
-                0% {
-                  opacity: 0;
-                  transform: scale(0.7);
-                }
-                100% {
-                  opacity: 1;
-                  transform: scale(1);
-                }
-              }
-            `}</style>
+                            @keyframes zoomIn {
+                                0% {
+                                opacity: 0;
+                                transform: scale(0.7);
+                                }
+                                100% {
+                                opacity: 1;
+                                transform: scale(1);
+                                }
+                            }
+                            `}</style>
                     </div>
                 </div>
             </div>

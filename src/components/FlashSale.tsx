@@ -23,7 +23,6 @@ export default function FlashSale() {
         return () => clearInterval(timer);
     }, []);
 
-
     const splitTime = (seconds: number) => {
         const h = String(Math.floor(seconds / 3600)).padStart(2, "0");
         const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
@@ -43,88 +42,66 @@ export default function FlashSale() {
         beforeChange: (_: number, next: number) => setCurrentSlide(next / slidesToShow),
         nextArrow: <SampleNextArrow show={currentSlide < totalSlides - 1} />,
         prevArrow: <SamplePrevArrow show={currentSlide > 0} />,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: { slidesToShow: 3, slidesToScroll: 3, infinite: false, dots: false }
+            },
+            {
+                breakpoint: 768,
+                settings: { slidesToShow: 2.7, slidesToScroll: 2, infinite: false, dots: false }
+            },
+            {
+                breakpoint: 480,
+                settings: { slidesToShow: 2.7, slidesToScroll: 2, infinite: false, dots: false }
+            }
+        ]
     };
 
     const [hours, minutes, seconds] = splitTime(timeLeft);
 
     return (
-        <div className="w-full bg-[rgba(0,0,0,0.03)] pb-6">
-            <div className="bg-white mx-40 shadow-sm">
-                <div className="bg-white p-4">
-                    <div className="flex items-center justify-between mb-4">
+        <div className="w-full bg-[rgba(0,0,0,0.03)] pt-2 sm:pt-0 pb-2 sm:pb-6">
+            <div className="bg-white sm:mx-2 md:mx-40 shadow-sm">
+                <div className="bg-white p-2 sm:p-4">
+                    <div className="flex items-center justify-between sm:mb-4">
                         <div className="flex items-center gap-2">
-                            <div className="relative ml-2 w-[140px] h-[30px]">
-                                <Image
-                                    src="/flashSale.png"
-                                    alt="flashSale"
-                                    fill
-                                    className="object-contain"
-                                    priority
-                                />
+                            <div className="relative sm:ml-2 w-[100px] sm:w-[120px] md:w-[140px] h-[16px] sm:h-[30px]">
+                                <Image src="/flashSale.png" alt="flashSale" fill className="object-contain" priority />
                             </div>
-
                             <div className="flex items-center gap-1">
                                 <TimeBox value={hours} />
-
                                 <TimeBox value={minutes} />
-
                                 <TimeBox value={seconds} />
                             </div>
                         </div>
-
-                        <button className="flex items-center cursor-pointer text-red-400 text-sm font-medium">
+                        <button className="flex items-center cursor-pointer text-gray-500 sm:text-red-400 text-xs md:text-sm font-medium">
                             Xem Tất Cả
                             <span className="ml-1 mr-2 mb-0.5 flex items-center justify-center">
                                 <IoIosArrowForward className="text-red" />
                             </span>
                         </button>
                     </div>
-
                     <div className="relative group">
                         <Slider {...settings}>
                             {products.map((product, idx) => (
-                                <div key={idx} className="px-2">
-                                    <div className="bg-white overflow-hidden">
-
-                                        <div className="relative w-full h-[200px]">
-                                            <Image
-                                                src={product.img}
-                                                alt="product"
-                                                fill
-                                                className="relative z-10 object-contain"
-                                            />
-
+                                <div key={idx} className="px-1 sm:px-2">
+                                    <div className="bg-white border sm:border-none overflow-hidden">
+                                        <div className="relative w-full h-[160px] md:h-[200px]">
+                                            <Image src={product.img} alt="product" fill className="relative z-10 object-contain" />
                                             <div className="absolute bottom-0 left-0 right-0 z-20">
-                                                <Image
-                                                    src={product.bg}
-                                                    alt="bg"
-                                                    width={160}
-                                                    height={50}
-                                                    className="object-contain mb-2.5"
-                                                />
+                                                <Image src={product.bg} alt="bg" width={160} height={50} className="object-contain mb-2.5" />
                                             </div>
                                         </div>
-                                        <div className="text-center text-red-400 text-lg mt-2">
-                                            {product.price}
-                                        </div>
-                                        <div className="relative flex text-center mt-2 mx-auto w-[150px] h-5 text-white text-[11px] font-bold rounded-xl overflow-hidden">
+                                        <div className="text-center text-red-400 text-base md:text-lg sm:mt-2">{product.price}</div>
+                                        <div className="relative flex text-center mb-2 sm:mb-0 mt-2 mx-auto w-[120px] md:w-[150px] h-5 text-white text-[10px] md:text-[11px] font-bold rounded-xl overflow-hidden">
                                             <div className="bg-orange-600" style={{ width: "5%" }}></div>
-
-                                            <div
-                                                style={{
-                                                    width: "10%",
-                                                    background: "linear-gradient(to right, #ea580c, #fdba74)"
-                                                }}
-                                            ></div>
-
+                                            <div style={{ width: "10%", background: "linear-gradient(to right, #ea580c, #fdba74)" }}></div>
                                             <div className="bg-orange-200 flex-1"></div>
-
-
-                                            <div className="absolute text-white inset-0 flex items-center justify-center z-10 text-orange-800">
+                                            <div className="absolute  text-white inset-0 flex items-center justify-center z-10 text-orange-800">
                                                 ĐANG BÁN CHẠY
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             ))}
@@ -135,7 +112,6 @@ export default function FlashSale() {
         </div>
     );
 }
-
 
 function TimeBox({ value }: { value: string }) {
     return (
@@ -155,9 +131,6 @@ function TimeBox({ value }: { value: string }) {
     );
 }
 
-
-
-
 function AnimatedDigit({ digit }: { digit: string }) {
     const [displayDigit, setDisplayDigit] = useState(digit);
     const [incomingDigit, setIncomingDigit] = useState<string | null>(null);
@@ -167,80 +140,45 @@ function AnimatedDigit({ digit }: { digit: string }) {
         if (digit !== displayDigit) {
             setIncomingDigit(digit);
             setIsAnimating(true);
-
             const timeout = setTimeout(() => {
                 setDisplayDigit(digit);
                 setIncomingDigit(null);
                 setIsAnimating(false);
             }, 300);
-
             return () => clearTimeout(timeout);
         }
     }, [digit, displayDigit]);
 
     return (
         <div className="relative overflow-hidden w-full h-full leading-none">
-
-            <span
-                className={`absolute inset-0 flex items-center justify-center transition-transform duration-300 ease-out ${isAnimating ? "animate-slideOutUp" : ""
-                    }`}
-            >
-                {displayDigit}
-            </span>
-
-
+            <span className={`absolute inset-0 flex items-center justify-center transition-transform duration-300 ease-out ${isAnimating ? "animate-slideOutUp" : ""}`}>{displayDigit}</span>
             {incomingDigit && (
-                <span
-                    className="absolute inset-0 flex items-center justify-center animate-slideInUp"
-                >
+                <span className="absolute inset-0 flex items-center justify-center animate-slideInUp">
                     {incomingDigit}
                 </span>
             )}
-
             <style jsx>{`
                 @keyframes slideInUp {
-                    from {
-                        transform: translateY(100%);
-                    }
-                    to {
-                        transform: translateY(0%);
-                    }
+                    from { transform: translateY(100%); }
+                    to { transform: translateY(0%); }
                 }
-
                 @keyframes slideOutUp {
-                    from {
-                        transform: translateY(0%);
-                    }
-                    to {
-                        transform: translateY(-100%);
-                    }
+                    from { transform: translateY(0%); }
+                    to { transform: translateY(-100%); }
                 }
-
-                .animate-slideInUp {
-                    animation: slideInUp 0.3s ease-out forwards;
-                }
-
-                .animate-slideOutUp {
-                    animation: slideOutUp 0.3s ease-out forwards;
-                }
+                .animate-slideInUp { animation: slideInUp 0.3s ease-out forwards; }
+                .animate-slideOutUp { animation: slideOutUp 0.3s ease-out forwards; }
             `}</style>
         </div>
     );
 }
-
-
-
-
 
 type ArrowProps = { onClick?: () => void; show?: boolean };
 
 function SampleNextArrow({ onClick, show }: ArrowProps) {
     if (!show) return null;
     return (
-        <div
-            onClick={onClick}
-            className="absolute top-1/2 -right-4 translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-150 hover:bg-gray-100"
-        >
+        <div onClick={onClick} className="absolute top-1/2 -right-4 translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-150 hover:bg-gray-100">
             <IoIosArrowForward size={14} className="text-gray-700" />
         </div>
     );
@@ -249,10 +187,7 @@ function SampleNextArrow({ onClick, show }: ArrowProps) {
 function SamplePrevArrow({ onClick, show }: ArrowProps) {
     if (!show) return null;
     return (
-        <div
-            onClick={onClick}
-            className="absolute top-1/2 -left-4 -translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-150 hover:bg-gray-100"
-        >
+        <div onClick={onClick} className="absolute top-1/2 -left-4 -translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-150 hover:bg-gray-100">
             <IoIosArrowBack size={14} className="text-gray-700" />
         </div>
     );

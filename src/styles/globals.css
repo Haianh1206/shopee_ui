@@ -1,11 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-/* Tailwind layers - BẮT BUỘC phải nằm trên cùng */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Reset cơ bản */
 *,
 *::before,
 *::after {
@@ -27,7 +26,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Light/Dark theme (có thể dùng nếu bạn dự định theme switching) */
 :root {
   --background: #ffffff;
   --foreground: #111111;
@@ -40,7 +38,25 @@ body {
   }
 }
 
-/* Light/Dark theme (có thể dùng nếu bạn dự định theme switching) */
+.scrollbar-custom::-webkit-scrollbar {
+  height: 6px;
+  width: 10px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: #ef4444;
+  border-radius: 10px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: #dc2626;
+}
 
 @custom-variant dark (&:is(.dark *));
 

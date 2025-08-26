@@ -41,3 +41,11 @@ yarn-error.log*
 next-env.d.ts
 
 /src/generated/prisma
+# Ignore real env files
+.env
+.env.local
+.env.development
+.env.production
+
+# But allow the example file
+!.env.example
