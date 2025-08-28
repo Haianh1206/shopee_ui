@@ -1,10 +1,12 @@
 import Footer from "@/components/Footer";
+
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
     return (
-        <div >
+        <div>
             {children}
-            <Footer />
+            <div className="hidden sm:block">
+                <Footer />
+            </div>
         </div>
-
     );
 }

@@ -23,7 +23,7 @@ export default function ThoiTrangNamPage() {
     ];
 
     return (
-        <main className="mx-40 py-8">
+        <main className="hidden sm:grid mx-40 py-8">
             <div className="text-[12px] text-gray-500 mb-6">
                 <Link href="/" className="hover:text-orange-600 underline transition-colors">
                     Trang Chủ

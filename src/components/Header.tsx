@@ -241,27 +241,37 @@ bg-gradient-to-b from-[#ee4d2d] to-[#ff7337] text-white shadow`}
                                     <IoMdSearch size={20} color="gray" />
                                 </button>
 
-                                <input
-                                    type="text"
-                                    placeholder="Shopee bao ship 0đ - Đăng ký ngay!"
-                                    onFocus={() => setIsSearchFocused(true)}
-                                    onBlur={() => setIsSearchFocused(false)}
-                                    className="
-                                        m-[4px] pl-6 py-1 sm:py-2.5 bg-white rounded-[2px] outline-none
-                                        text-red-700 text-lg
-                                        sm:text-black sm:text-sm
-                                        w-[calc(100%+80px)] sm:w-full
-                                      sm:translate-x-0
-                                        transform
-                                        truncate placeholder:truncate placeholder:overflow-ellipsis placeholder:whitespace-nowrap
-                                    "
-                                />
-                                <div className="flex sm:hidden items-center justify-center"><a href="#">
-                                    <FaShoppingCart className="ml-4" size={24} color="white" />
-                                </a></div>
-                                <div className="flex sm:hidden items-center justify-center"><a href="#">
-                                    <FaUserCircle className="ml-4" size={24} color="white" />
-                                </a></div>
+                                <div className="flex items-center w-full">
+                                    <input
+                                        type="text"
+                                        placeholder="Shopee bao ship 0đ - Đăng ký ngay!"
+                                        onFocus={() => setIsSearchFocused(true)}
+                                        onBlur={() => setIsSearchFocused(false)}
+                                        className="
+      flex-1
+      m-[4px] pl-6 py-1 sm:py-2.5 
+      bg-white rounded-[2px] outline-none
+      text-red-700 text-lg
+      sm:text-black sm:text-sm
+      truncate placeholder:truncate placeholder:overflow-ellipsis placeholder:whitespace-nowrap
+    "
+                                    />
+
+                                    {/* Icon giỏ hàng */}
+                                    <div className="flex sm:hidden items-center justify-center ml-2">
+                                        <a href="#">
+                                            <FaShoppingCart size={24} className="text-white" />
+                                        </a>
+                                    </div>
+
+                                    {/* Icon user */}
+                                    <div className="flex sm:hidden items-center justify-center ml-2">
+                                        <a href="#">
+                                            <FaUserCircle size={24} className="text-white" />
+                                        </a>
+                                    </div>
+                                </div>
+
 
 
 
