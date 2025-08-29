@@ -3,7 +3,7 @@ import { FaStar, FaRegStar } from "react-icons/fa";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { useRef, useState } from "react";
 import { Pagination } from "./Pagination";
-
+import { Star } from "lucide-react";
 const filters = [
     "Tất Cả",
     "5 Sao (9)",
@@ -116,7 +116,7 @@ export default function ProductReviews() {
 
     const topRef = useRef<HTMLDivElement | null>(null);
 
-    // ✅ Lọc review theo filter
+
     const filteredReviews = reviews.filter((r) => {
         if (activeFilter === "Tất Cả") return true;
         if (activeFilter.startsWith("5 Sao")) return r.rating === 5;
@@ -143,12 +143,12 @@ export default function ProductReviews() {
 
     return (
         <div className="w-full bg-[rgba(0,0,0,0.03)] pb-1 pt-4">
-            <div className=" mx-40 bg-white" ref={topRef}>
-                <h3 className="flex items-center text-lg h-12 mb-4">
+            <div className=" sm:mx-40 bg-white" ref={topRef}>
+                <h3 className="hidden sm:flex items-center text-lg h-12 mb-4">
                     <span className="ml-4">MÔ TẢ SẢN PHẨM</span>
                 </h3>
 
-                <div className="flex items-center border h-[145px] bg-[#FFFBF8] rounded-[2px] p-6 mx-6 mb-6 ">
+                <div className="hidden sm:flex items-center border h-[145px] bg-[#FFFBF8] rounded-[2px] p-6 mx-6 mb-6 ">
                     <div>
                         <span className=" ml-6 text-4xl  text-red-500">4</span>
                         <span className="ml-2 text-[20px] text-red-500">trên 5</span>
@@ -167,14 +167,14 @@ export default function ProductReviews() {
                         </div>
                     </div>
 
-                    {/* Filters */}
+
                     <div className="flex flex-wrap gap-2 mt-4 ml-10">
                         {filters.map((f) => (
                             <button
                                 key={f}
                                 onClick={() => {
                                     setActiveFilter(f);
-                                    setCurrentPage(1); // reset về page 1 khi đổi filter
+                                    setCurrentPage(1);
                                 }}
                                 className={`px-8 py-1 text-sm border transition ${activeFilter === f
                                     ? "bg-white  text-red-500 border-red-500"
@@ -186,14 +186,37 @@ export default function ProductReviews() {
                         ))}
                     </div>
                 </div>
+                <div className="flex sm:hidden bg-white p-4 rounded shadow-sm flex items-center justify-between">
 
-                {/* Review List */}
+                    <div>
+                        <h2 className="text-sm font-medium mb-1">Đánh Giá Sản Phẩm</h2>
+                        <div className="flex items-center gap-2 text-xs text-gray-600">
+
+                            <div className="flex text-yellow-400">
+                                <Star size={16} fill="currentColor" />
+                                <Star size={16} fill="currentColor" />
+                                <Star size={16} fill="currentColor" />
+                                <Star size={16} fill="currentColor" />
+                                <Star size={16} fill="currentColor" />
+                            </div>
+
+                            <span className="text-red-500 font-medium">5/5</span>
+                            <span>(75 Đánh Giá)</span>
+                        </div>
+                    </div>
+
+
+                    <button className="text-red-500 text-sm font-medium flex items-center hover:underline">
+                        Xem tất cả <span className="ml-1">&gt;</span>
+                    </button>
+                </div>
+
                 <div className="space-y-6 mx-6">
                     {paginatedReviews.length > 0 ? (
                         paginatedReviews.map((r) => (
-                            <div key={r.id} className="border-b pl-6 pb-4">
+                            <div key={r.id} className="border-b mt-6 sm:mt-0 pl-6 pb-4">
                                 <div className="flex gap-3">
-                                    {/* Avatar */}
+
                                     {r.avatar ? (
                                         <img
                                             src={r.avatar}
@@ -206,12 +229,12 @@ export default function ProductReviews() {
                                         </div>
                                     )}
 
-                                    {/* Nội dung bên phải */}
+
                                     <div className="flex-1">
-                                        {/* User */}
+
                                         <p className="text-[12px]">{r.user}</p>
 
-                                        {/* Rating */}
+
                                         <div className="flex gap-1 mb-1">
                                             {Array.from({ length: 5 }).map((_, i) => (
                                                 <FaStar
@@ -222,17 +245,17 @@ export default function ProductReviews() {
                                             ))}
                                         </div>
 
-                                        {/* Date */}
+
                                         <p className="text-xs text-gray-500 mb-2">
                                             {r.date} | {r.type}
                                         </p>
 
-                                        {/* Content */}
+
                                         <p className="text-gray-700 whitespace-pre-line">
                                             {r.content}
                                         </p>
 
-                                        {/* Helpful Button */}
+
                                         <button className="mt-2 text-sm text-gray-400 flex items-center w-full hover:text-red-500">
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -254,7 +277,7 @@ export default function ProductReviews() {
                     )}
                 </div>
 
-                {/* Pagination */}
+
                 {totalPages > 1 && (
                     <Pagination
                         currentPage={currentPage}

@@ -178,7 +178,7 @@ type ArrowProps = { onClick?: () => void; show?: boolean };
 function SampleNextArrow({ onClick, show }: ArrowProps) {
     if (!show) return null;
     return (
-        <div onClick={onClick} className="absolute top-1/2 -right-4 translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-150 hover:bg-gray-100">
+        <div onClick={onClick} className="hidden sm:flex absolute top-1/2 -right-4 translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-150 hover:bg-gray-100">
             <IoIosArrowForward size={14} className="text-gray-700" />
         </div>
     );
@@ -187,7 +187,7 @@ function SampleNextArrow({ onClick, show }: ArrowProps) {
 function SamplePrevArrow({ onClick, show }: ArrowProps) {
     if (!show) return null;
     return (
-        <div onClick={onClick} className="absolute top-1/2 -left-4 -translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-150 hover:bg-gray-100">
+        <div onClick={onClick} className="hidden sm:flex absolute top-1/2 -left-4 -translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-150 hover:bg-gray-100">
             <IoIosArrowBack size={14} className="text-gray-700" />
         </div>
     );

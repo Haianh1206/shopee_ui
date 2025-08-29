@@ -12,7 +12,7 @@ export function Pagination({ currentPage, totalPages, onPageChange }: Pagination
     return (
         <div className="flex justify-center mt-6 pb-6">
             <nav className="flex items-center space-x-8">
-                {/* Prev */}
+
                 <button
                     onClick={() => currentPage > 1 && onPageChange(currentPage - 1)}
                     disabled={currentPage === 1}
@@ -21,7 +21,7 @@ export function Pagination({ currentPage, totalPages, onPageChange }: Pagination
                     &lt;
                 </button>
 
-                {/* Pages */}
+
                 {pages.map((p) => (
                     <button
                         key={p}
@@ -35,7 +35,7 @@ export function Pagination({ currentPage, totalPages, onPageChange }: Pagination
                     </button>
                 ))}
 
-                {/* Next */}
+
                 <button
                     onClick={() => currentPage < totalPages && onPageChange(currentPage + 1)}
                     disabled={currentPage === totalPages}

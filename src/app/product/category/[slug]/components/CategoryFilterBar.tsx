@@ -46,7 +46,6 @@ export default function CategoryFilterBar() {
         }
     };
 
-    // Tạo biến filteredProducts bằng useMemo
     const filteredProducts = useMemo(() => {
         return filterProducts(products, active as FilterType);
     }, [active]);

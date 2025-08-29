@@ -36,33 +36,47 @@ export default function FlashSale() {
         beforeChange: (_: number, next: number) => setCurrentSlide(next / slidesToShow),
         nextArrow: <SampleNextArrow show={currentSlide < totalSlides - 1} />,
         prevArrow: <SamplePrevArrow show={currentSlide > 0} />,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: { slidesToShow: 3, slidesToScroll: 3, infinite: false, dots: false }
+            },
+            {
+                breakpoint: 768,
+                settings: { slidesToShow: 2.7, slidesToScroll: 2, infinite: false, dots: false }
+            },
+            {
+                breakpoint: 480,
+                settings: { slidesToShow: 2.7, slidesToScroll: 2, infinite: false, dots: false }
+            }
+        ]
     };
 
     return (
         <div className="w-full bg-[rgba(0,0,0,0.03)] ">
 
-            <div className=" mx-40 ">
+            <div className=" sm:mx-40 ">
                 <div className="flex items-center justify-between ">
-                    <h2 className="text-lg text-[16px] text-gray-500 mb-2 pt-10">CÁC SẢN PHẨM KHÁC CỦA SHOP</h2>
+                    <h2 className="text-lg text-[16px] ml-3 sm:ml-0 text-gray-500 mb-2 pt-3 sm:pt-10">CÁC SẢN PHẨM KHÁC CỦA SHOP</h2>
 
-                    <button className="flex items-center cursor-pointer text-red-400 text-sm font-medium">
+                    <button className="hidden sm:flex items-center cursor-pointer text-red-400 text-sm font-medium">
                         Xem Tất Cả
                         <span className="ml-1 mr-2 mb-0.5 flex items-center justify-center">
                             <IoIosArrowForward className="text-red" />
                         </span>
                     </button>
                 </div>
-                <div className=" h-[290px] ">
+                <div className=" sm:h-[290px] ">
                     <div className="relative group bg-white  ">
                         <Slider {...settings}>
                             {products.map((product) => (
                                 <div
                                     key={product.id}
                                     onClick={() => handleClick(product.id)}
-                                    className=" group relative flex flex-col bg-white border border-gray-200 px-2.5 "
+                                    className=" group  relative flex flex-col bg-white border border-gray-200 px-2.5 "
                                 >
 
-                                    <div className="relative w-full aspect-square transition-transform duration-200 hover:translate-y-[-1px]  ">
+                                    <div className="relative  w-full aspect-square transition-transform duration-200 hover:translate-y-[-1px]  ">
                                         <Image
                                             src={product.img}
                                             alt="product"
@@ -129,7 +143,7 @@ function SampleNextArrow({ onClick, show }: ArrowProps) {
     return (
         <div
             onClick={onClick}
-            className="absolute z-9 top-1/2 right-0 translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-150 hover:bg-gray-100"
+            className="hidden sm:flex absolute z-9 top-1/2 right-0 translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-150 hover:bg-gray-100"
         >
             <IoIosArrowForward size={14} className="text-gray-700" />
         </div>
@@ -141,7 +155,7 @@ function SamplePrevArrow({ onClick, show }: ArrowProps) {
     return (
         <div
             onClick={onClick}
-            className="absolute z-9 top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-150 hover:bg-gray-100"
+            className="hidden sm:flex absolute z-9 top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-150 hover:bg-gray-100"
         >
             <IoIosArrowBack size={14} className="text-gray-700" />
         </div>

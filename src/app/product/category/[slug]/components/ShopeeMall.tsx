@@ -50,7 +50,7 @@ export default function ShopeeMall() {
 
     return (
         <div className="w-full bg-[rgba(0,0,0,0.03)] sm:pb-6">
-            {/* SHOPEE MALL */}
+
             <div className="bg-white sm:mx-40 sm:h-[670px] shadow-sm">
                 <div className="hidden sm:flex items-center justify-between sm:mb-4 pb-2">
                     <div className="flex items-center space-x-4 px-5 pt-5 pb-2">
@@ -111,7 +111,7 @@ export default function ShopeeMall() {
                             </div>
                         </div>
 
-                        {/* MOBILE Shopee Mall */}
+
                         <div className="sm:hidden overflow-x-auto scrollbar-hide px-3">
                             <div className="flex gap-4 snap-x snap-mandatory">
                                 {Array.from({ length: Math.ceil(products.length / 6) }).map((_, pageIndex) => {
@@ -165,7 +165,7 @@ export default function ShopeeMall() {
 
 
 
-                        {/* PC arrows */}
+
                         {page > 0 && (
                             <button
                                 onClick={handlePrev}
@@ -185,7 +185,7 @@ export default function ShopeeMall() {
                     </div>
                 </div>
 
-                {/* Shops */}
+
                 <div className="flex items-center justify-between mb-2 sm:mb-4 ">
                     <h2 className=" text-sm sm:text-lg text-gray-500 mb-2 px-4 pt-4">
                         SIÊU SHOP THỊNH HÀNH - BUNG DEAL SIÊU PHẨM
@@ -198,7 +198,7 @@ export default function ShopeeMall() {
                     </button>
                 </div>
 
-                {/* MOBILE scroll - PC grid */}
+
                 <div className="flex sm:grid sm:grid-cols-5 pb-3 sm:pb-0 gap-2 mx-3 px-6 overflow-x-auto sm:overflow-x-visible snap-x snap-mandatory scrollbar-hide">
                     {shops.map((shop, idx) => (
                         <div
@@ -226,7 +226,7 @@ export default function ShopeeMall() {
                 </div>
             </div>
 
-            {/* SECOND BLOCK */}
+
             <div className="bg-white sm:mx-40 sm:h-[355px] shadow-sm pb-3 sm:pb-0 mt-3 sm:mt-6">
                 <div className="flex items-center justify-between sm:mb-4 ">
                     <h2 className="text-sm sm:text-lg text-gray-500 mb-2 px-4 pt-4">

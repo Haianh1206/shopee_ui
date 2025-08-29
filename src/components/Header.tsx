@@ -136,7 +136,7 @@ bg-gradient-to-b from-[#ee4d2d] to-[#ff7337] text-white shadow`}
                             </Link>
                         </div>
 
-                        {/* Language selector */}
+
                         <div
                             className="relative inline-flex items-center cursor-pointer text-white select-none"
                             onMouseEnter={() => setShowLanguagePopup(true)}
@@ -166,7 +166,7 @@ bg-gradient-to-b from-[#ee4d2d] to-[#ff7337] text-white shadow`}
                                 />
                             )}
 
-                            {/* Popup label */}
+
                             <div
                                 className={`absolute top-full -left-20 mt-2 h-[80px] w-[180px] bg-white rounded shadow-xl p-3 text-left text-sm text-black
       transition-transform transition-opacity duration-200 z-[9999]
@@ -214,9 +214,9 @@ bg-gradient-to-b from-[#ee4d2d] to-[#ff7337] text-white shadow`}
                     </div>
                 </div>
 
-                {/* Middle bar */}
+
                 <div className="flex sm:justify-between items-center h-[56px] sm:h-[80px]">
-                    {/* Logo */}
+
                     <div className="hidden sm:flex flex items-center mb-2 gap-2">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -257,14 +257,14 @@ bg-gradient-to-b from-[#ee4d2d] to-[#ff7337] text-white shadow`}
     "
                                     />
 
-                                    {/* Icon giỏ hàng */}
+
                                     <div className="flex sm:hidden items-center justify-center ml-2">
                                         <a href="#">
                                             <FaShoppingCart size={24} className="text-white" />
                                         </a>
                                     </div>
 
-                                    {/* Icon user */}
+
                                     <div className="flex sm:hidden items-center justify-center ml-2">
                                         <a href="#">
                                             <FaUserCircle size={24} className="text-white" />
@@ -320,7 +320,7 @@ bg-gradient-to-b from-[#ee4d2d] to-[#ff7337] text-white shadow`}
                         </div>
                     </div>
 
-                    {/* Cart */}
+
                     <div
                         className="relative inline-block cursor-pointer"
                         onMouseEnter={() => setShowCartPopup(true)}
@@ -349,7 +349,7 @@ bg-gradient-to-b from-[#ee4d2d] to-[#ff7337] text-white shadow`}
                             />
                         )}
 
-                        {/* Popup label */}
+
                         <div
                             className={`absolute top-full -left-90 mt-2 h-[250px] w-[400px] bg-white rounded shadow-xl p-3 text-center text-sm text-black
                             transition-transform transition-opacity duration-200 z-[9999]

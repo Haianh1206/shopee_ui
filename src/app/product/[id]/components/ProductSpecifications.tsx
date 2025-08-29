@@ -10,13 +10,13 @@ const ProductSpecifications: FC<SpecificationsProps> = ({ specs, content, hashta
     return (
         <div className="w-full bg-[rgba(0,0,0,0.03)] pb-1">
 
-            <div className="   mx-40 ">
+            <div className="   sm:mx-40 ">
                 <div className="bg-white px-6 py-4 rounded-sm shadow-sm">
                     <h3 className="flex items-center text-lg h-12 bg-gray-100 mb-4">
                         <span className="ml-4">CHI TIẾT SẢN PHẨM</span>
                     </h3>
                     <div className="p-4 space-y-7 text-sm">
-                        {/* Danh mục */}
+
                         <div className="grid grid-cols-10 gap-x-4">
                             <span className="col-span-2 text-gray-400">Danh mục</span>
                             <span className="col-span-8 text-[#0055AA]">
@@ -25,13 +25,13 @@ const ProductSpecifications: FC<SpecificationsProps> = ({ specs, content, hashta
                             </span>
                         </div>
 
-                        {/* Xuất xứ */}
+
                         <div className="grid grid-cols-10 gap-x-4">
                             <span className="col-span-2 text-gray-400">Xuất xứ</span>
                             <span className="col-span-8 font-medium">Việt Nam</span>
                         </div>
 
-                        {/* Specs */}
+
                         {specs.map((item, idx) => (
                             <div key={idx} className="grid grid-cols-10 gap-x-4">
                                 <span className="col-span-2 text-gray-400">{item.label}</span>
@@ -39,7 +39,7 @@ const ProductSpecifications: FC<SpecificationsProps> = ({ specs, content, hashta
                             </div>
                         ))}
 
-                        {/* Gửi từ */}
+
                         <div className="grid grid-cols-10 gap-x-4">
                             <span className="col-span-2 text-gray-400">Gửi từ</span>
                             <span className="col-span-8 font-medium">Thanh Hóa</span>
@@ -60,7 +60,7 @@ const ProductSpecifications: FC<SpecificationsProps> = ({ specs, content, hashta
                             </p>
                         ))}
 
-                        {/* Hashtags */}
+
                         {hashtags && hashtags.length > 0 && (
                             <div className="flex flex-wrap pt-4 leading-6 text-[14px] text-gray-800">
                                 {hashtags.map((tag, idx) => (

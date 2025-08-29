@@ -2,7 +2,9 @@
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import { products } from "@/app/data/products";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { BsThreeDotsVertical } from "react-icons/bs";
+
 import {
 
     FaShoppingCart,
@@ -10,7 +12,9 @@ import {
 import { FaFacebookF, FaPinterestP, FaTwitter } from "react-icons/fa";
 import { FaFacebookMessenger } from "react-icons/fa6";
 import { FiHeart } from "react-icons/fi";
-import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io"; export default function ProductDetailPage() {
+import { useSwipeable } from "react-swipeable";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+export default function ProductDetailPage() {
     const { id } = useParams<{ id: string }>();
     const productId = Number(id);
     const product = products.find((p) => p.id === productId);
@@ -20,10 +24,42 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io"; export defau
     const [selectedSize, setSelectedSize] = useState(product?.sizes?.[0] || "");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [startIndex, setStartIndex] = useState(0);
+    const [[mobileIndex, direction], setMobileIndex] = useState<[number, number]>([0, 0]);
+    const [timeLeft, setTimeLeft] = useState(3 * 60 * 60);
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setTimeLeft((prev) => (prev <= 0 ? 3 * 60 * 60 : prev - 1));
+        }, 1000);
+        return () => clearInterval(timer);
+    }, []);
 
+    const splitTime = (seconds: number) => {
+        const h = String(Math.floor(seconds / 3600)).padStart(2, "0");
+        const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
+        const s = String(seconds % 60).padStart(2, "0");
+        return [h, m, s];
+    };
+    const swipeHandlers = useSwipeable({
+        onSwipedLeft: () => {
+            if (product?.images) {
+                setMobileIndex(([prev]) => [
+                    Math.min(prev + 1, product.images.length - 1),
+                    1,
+                ]);
+            }
+        },
+        onSwipedRight: () => {
+            if (product?.images) {
+                setMobileIndex(([prev]) => [Math.max(prev - 1, 0), -1]);
+            }
+        },
+        trackMouse: true,
+    });
     if (!product) {
         return <div className="p-10 text-red-500">Không tìm thấy sản phẩm!</div>;
     }
+    const [hours, minutes, seconds] = splitTime(timeLeft);
+
 
     const currentIndex = product.images?.indexOf(selectedImage) ?? 0;
 
@@ -49,18 +85,99 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io"; export defau
             );
         }
     };
+
     return (
-        <div className="w-full bg-[rgba(0,0,0,0.03)] -mt-[110px] pb-4">
+        <div className="w-full bg-[rgba(0,0,0,0.03)] -mt-[110px] sm:pb-4">
 
-            <div className="   mt-26 mx-40 pt-6">
+            <div className="   mt-26 sm:mx-40 sm:pt-6">
 
-                <div className="text-[#0055AA] mt-2 mb-6 text-sm ">
+                <div className="hidden sm:flex text-[#0055AA] mt-2 mb-6 text-sm ">
                     Shopee &gt; Thời Trang Nữ &gt; Áo &gt; Áo thun &gt; <span className="text-gray-900">{product.name}</span>
                 </div>
 
-                <div className=" bg-white h-[620px] p-4 flex flex-col md:flex-row gap-6">
+                <div className=" bg-white h-[620px] sm:p-4 flex flex-col md:flex-row sm:gap-6">
+                    <div className="sm:hidden w-full" {...swipeHandlers}>
+                        <div className="relative w-full h-[380px]">
 
-                    <div className="flex flex-col">
+                            <Image
+                                src={product.images[mobileIndex]}
+                                // src={selectedImage}
+                                alt={`mobile-img-${mobileIndex}`}
+                                fill
+                                className="object-cover"
+                            />
+
+
+                            <div className="absolute top-0 left-0 mt-1 right-0 flex items-center justify-between px-4 py-2">
+
+                                <button
+                                    className="bg-black/40 p-2 rounded-full text-white"
+                                    onClick={() => window.history.back()}
+                                >
+                                    <IoIosArrowBack size={20} />
+                                </button>
+
+                                <div className="flex items-center gap-5">
+
+                                    <button className="bg-black/40 p-2 rounded-full text-white">
+                                        <FaShoppingCart size={18} />
+                                    </button>
+
+
+                                    <button className="bg-black/40 p-2 rounded-full text-white">
+                                        <BsThreeDotsVertical size={18} />
+                                    </button>
+                                </div>
+                            </div>
+
+
+                            <div className="absolute bottom-2 right-2 bg-white/80 text-black text-sm px-3 py-1 rounded-full">
+                                {mobileIndex + 1}/{product.images.length}
+                            </div>
+                        </div>
+
+                        <div className="relative flex items-center">
+                            <div className="flex space-x-2 overflow-hidden">
+                                {product.images
+                                    ?.slice(startIndex, startIndex + 5)
+                                    .map((img: string, index: number) => (
+                                        <div
+
+                                            key={index}
+                                            className={`border cursor-pointer hover:border-red-500`}
+                                            onClick={() => {
+                                                setSelectedImage(img);
+                                                setIsModalOpen(true);
+                                            }}
+                                        >
+                                            <Image
+
+                                                src={img}
+                                                alt="thumb"
+                                                width={80}
+                                                height={70}
+                                                className="object-cover"
+                                            />
+                                        </div>
+
+                                    ))}
+                            </div>
+
+
+                        </div>
+                        <div className="flex items-center px-2 py-1 mt-2 bg-orange-100 justify-between gap-2">
+                            <div className="relative sm:ml-2 w-[100px] sm:w-[120px] md:w-[140px] h-[16px] sm:h-[30px]">
+                                <Image src="/flashSale.png" alt="flashSale" fill className="object-contain" priority />
+                            </div>
+                            <div className="flex items-center gap-1">
+                                <span className="text-gray">Kết thúc trong</span>
+                                <TimeBox value={hours} />
+                                <TimeBox value={minutes} />
+                                <TimeBox value={seconds} />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="hidden sm:flex flex-col">
                         <div
                             className="mb-2 w-[444px] h-[444px] relative cursor-pointer"
                             onClick={() => setIsModalOpen(true)}
@@ -150,11 +267,11 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io"; export defau
                         </div>
 
 
-                        {/* Modal xem ảnh */}
+
                         {isModalOpen && product && (
                             <div
                                 className="fixed inset-0 bg-black/20  flex items-center justify-center z-50"
-                                onClick={() => setIsModalOpen(false)} // Click ra ngoài
+                                onClick={() => setIsModalOpen(false)}
                             >
                                 <div
                                     className="bg-white rounded-[2px] overflow-hidden flex w-[830px] h-[530px] relative shadow-lg"
@@ -217,14 +334,15 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io"; export defau
                     </div>
 
 
-                    <div className="flex-1 ml-3 mr-4">
-                        <div className="text-gray-900 text-[20px]  text-left line-clamp-2 transition-transform duration-200 group-hover:translate-y-[-1px]">
-                            <span className="bg-orange-600 text-white text-[12px] px-1.5 py-1 mb-1 rounded-[2px] mr-2 align-middle">
+                    <div className="flex-1 sm:ml-3 sm:mr-4">
+                        <div className="hidden sm:flex text-gray-900 text-[20px] mt-4 text-left line-clamp-2 transition-transform duration-200 group-hover:translate-y-[-1px]">
+                            <span className="hidden sm:flex bg-orange-600 text-white text-[12px] px-1.5 py-1 mb-1 rounded-[2px] mr-2 align-middle">
                                 Yêu thích
                             </span>
+
                             {product.name}
                         </div>
-                        <div className="flex items-center mb-2 relative">
+                        <div className="hidden sm:flex items-center mb-2 relative">
                             <span className="mr-2 underline underline-offset-[4px]">{product.rating || 0}</span>
                             <span className="mr-2 text-yellow-500">★★★★★</span>
                             <span className="text-gray-300 ml-2 mr-5">|</span>
@@ -237,9 +355,9 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io"; export defau
                             </span>
                         </div>
 
-                        <div className="mb-4 p-4 bg-[rgba(0,0,0,0.02)]  flex items-center">
+                        <div className="mb-0 p-4 bg-[rgba(0,0,0,0.02)]  flex items-center">
 
-                            <span className="text-3xl text-red-500 mr-2">{product.price}</span>
+                            <span className="text-2xl text-red-500 mr-2">{product.price}</span>
                             {product.originalPrice && (
                                 <span className="line-through text-gray-400">{product.originalPrice}</span>
                             )}
@@ -247,9 +365,30 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io"; export defau
                                 {product.sale}
                             </span>
                         </div>
-                        <div className="ml-4 space-y-10">
-                            <div className="flex items-start mb-4  mt-6">
-                                <span className="w-27 text-gray-500  text-sm">Vận Chuyển</span>
+
+                        <div className="sm:hidden  border-b">
+                            <div className="flex items-start gap-2">
+
+                                <Image
+                                    src="/mall.svg"
+                                    alt="Mall"
+                                    width={36}
+                                    height={16}
+                                    className="inline-block mt-1"
+                                    priority
+                                />
+
+
+                                <p className="text-gray-900 text-[16px] leading-6 font-medium">
+                                    {product.name}
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div className="sm:ml-4 space-y-10">
+                            <div className="flex items-start pl-3 sm:pl-0 mb-4 border-b sm:border-none mb-2 sm:mb-0 mt-2 sm:mt-6">
+                                <span className="hidden sm:flex w-27 text-gray-500  text-sm">Vận Chuyển</span>
                                 <div>
                                     <div className="flex items-center text-sm text-gray-700">
                                         <img
@@ -265,7 +404,16 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io"; export defau
                                     </p>
                                 </div>
                             </div>
-                            <div className="relative group flex  items-center">
+                            <div className="flex sm:hidden pl-3 sm:pl-0">
+                                <img
+                                    src="/protect1.png"
+                                    alt="car"
+                                    className="w-5 h-5 inline-block mr-1"
+                                />
+                                <span className="text-gray-700 text-sm">Trả hàng miễn phí 15 ngày</span>
+                            </div>
+
+                            <div className="hidden sm:flex relative group   items-center">
                                 <span className="w-20 text-gray-500 text-sm mr-7">An Tâm Mua Sắm Cùng Shopee</span>
 
 
@@ -313,7 +461,7 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io"; export defau
                             </div>
 
                             {product.colors && (
-                                <div className="mb-4 flex items-center">
+                                <div className="mb-4 hidden sm:flex items-center">
                                     <div className="font-medium text-gray-500 mb-1 mr-12">Màu sắc</div>
                                     <div className="flex space-x-2">
                                         {product.colors.map((color) => (
@@ -330,7 +478,7 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io"; export defau
                             )}
 
                             {product.sizes && (
-                                <div className="mb-4 flex items-center">
+                                <div className="mb-4 hidden sm:flex items-center">
                                     <div className="font-medium text-gray-500 mt-4 mb-1 mr-19">Size</div>
                                     <div className="flex space-x-2">
                                         {product.sizes.map((size) => (
@@ -347,7 +495,7 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io"; export defau
                             )}
 
 
-                            <div className="mb-4 flex items-center">
+                            <div className="mb-4 hidden sm:flex items-center">
                                 <div className="font-medium text-gray-500 mt-6 mb-1 mr-10">Số lượng</div>
                                 <div className="flex items-center space-x-2">
                                     <button
@@ -367,7 +515,7 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io"; export defau
                             </div>
 
 
-                            <div className="flex space-x-4 mt-10">
+                            <div className="hidden sm:flex space-x-4 mt-10">
                                 <button className="w-[200px] cursor-pointer h-[48px] bg-red-50 border border-red-500 text-red-500 
   py-2 font-medium hover:opacity-80 transition flex items-center justify-center gap-2">
                                     <FaShoppingCart size={16} color="red" />
@@ -382,6 +530,65 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io"; export defau
                     </div>
                 </div>
             </div>
+        </div>
+    );
+}
+function TimeBox({ value }: { value: string }) {
+    return (
+        <div className="flex">
+            {value.split("").map((digit, idx) => (
+                <div
+                    key={idx}
+                    className={`w-[12px] h-6 bg-black text-white text-sm font-bold flex items-center justify-center overflow-hidden relative
+                        ${idx === 0 ? "rounded-l-[4px]" : ""}
+                        ${idx === value.length - 1 ? "rounded-r-[4px]" : ""}
+                    `}
+                >
+                    <AnimatedDigit digit={digit} />
+                </div>
+            ))}
+        </div>
+    );
+}
+
+function AnimatedDigit({ digit }: { digit: string }) {
+    const [displayDigit, setDisplayDigit] = useState(digit);
+    const [incomingDigit, setIncomingDigit] = useState<string | null>(null);
+    const [isAnimating, setIsAnimating] = useState(false);
+
+    useEffect(() => {
+        if (digit !== displayDigit) {
+            setIncomingDigit(digit);
+            setIsAnimating(true);
+            const timeout = setTimeout(() => {
+                setDisplayDigit(digit);
+                setIncomingDigit(null);
+                setIsAnimating(false);
+            }, 300);
+            return () => clearTimeout(timeout);
+        }
+    }, [digit, displayDigit]);
+
+    return (
+        <div className="relative overflow-hidden w-full h-full leading-none">
+            <span className={`absolute inset-0 flex items-center justify-center transition-transform duration-300 ease-out ${isAnimating ? "animate-slideOutUp" : ""}`}>{displayDigit}</span>
+            {incomingDigit && (
+                <span className="absolute inset-0 flex items-center justify-center animate-slideInUp">
+                    {incomingDigit}
+                </span>
+            )}
+            <style jsx>{`
+                @keyframes slideInUp {
+                    from { transform: translateY(100%); }
+                    to { transform: translateY(0%); }
+                }
+                @keyframes slideOutUp {
+                    from { transform: translateY(0%); }
+                    to { transform: translateY(-100%); }
+                }
+                .animate-slideInUp { animation: slideInUp 0.3s ease-out forwards; }
+                .animate-slideOutUp { animation: slideOutUp 0.3s ease-out forwards; }
+            `}</style>
         </div>
     );
 }
