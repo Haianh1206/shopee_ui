@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 
 export default function CategoryList() {
     const perPage = 20;
+    const perPage2 = 16;
     const totalPages = Math.ceil(categories.length / perPage);
     const [page, setPage] = useState(0);
 
@@ -24,7 +25,7 @@ export default function CategoryList() {
     };
     return (
         <div className=" w-full bg-[rgba(0,0,0,0.03)] py-3 sm:py-6">
-            <div className="relative bg-white sm:mx-40 h-[370px] group">
+            <div className="relative bg-white xl:mx-40 h-[370px] group">
                 <h2 className="hidden sm:flex text-lg text-gray-500 mb-4 px-4 pt-4">DANH MỤC</h2>
                 <div className="flex sm:hidden items-center pl-3 pr-1 h-10  justify-between mb-2">
                     <h2 className="flex sm:hidden text-md text-orange-600  pt-2">DANH MỤC</h2>
@@ -37,7 +38,7 @@ export default function CategoryList() {
                 </div>
                 <div className="overflow-hidden">
                     <div
-                        className="hidden sm:flex transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]"
+                        className="hidden xl:flex transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]"
                         style={{ transform: `translateX(-${page * 100}%)` }}
                     >
                         {Array.from({ length: totalPages }).map((_, pageIndex) => {
@@ -69,7 +70,7 @@ export default function CategoryList() {
                             );
                         })}
                     </div>
-                    <div className="sm:hidden overflow-x-auto snap-x snap-mandatory">
+                    <div className="sm:hidden overflow-x-auto scrollbar-hide snap-x snap-mandatory">
                         <div className="flex w-max">
                             {Array.from({ length: Math.ceil(categories.length / 6) }).map((_, pageIndex) => {
                                 const start = pageIndex * 6;
@@ -103,13 +104,45 @@ export default function CategoryList() {
                         </div>
                     </div>
 
+                    <div className="hidden md:flex xl:hidden scrollbar-hide overflow-x-auto snap-x snap-mandatory">
+                        <div className="flex w-max">
+                            {Array.from({ length: totalPages }).map((_, pageIndex) => {
+                                const start = pageIndex * perPage2;
+                                const pageItems = categories.slice(start, start + perPage2);
+                                return (
+                                    <div
+                                        key={pageIndex}
+
+                                        className="grid grid-cols-8 grid-rows-2  flex-shrink-0 w-full"
+                                    >
+                                        {pageItems.map((cat) => (
+                                            <div
+                                                key={cat.id}
+                                                onClick={() => handleClick(cat.id)}
+                                                className="flex flex-col items-center h-[155px] p-2 border border-gray-100 hover:shadow-md transition-all duration-200 cursor-pointer"
+                                            >
+                                                <div className="w-16 h-16 mt-3 flex items-center justify-center rounded-full overflow-hidden bg-gray-100">
+                                                    <img
+                                                        src={cat.img}
+                                                        alt={cat.name}
+                                                        className="w-full h-full object-cover"
+                                                    />
+                                                </div>
+                                                <span className="text-sm text-center mt-4">{cat.name}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
 
                 </div>
 
                 {page < totalPages - 1 && (
                     <button
                         onClick={handleNext}
-                        className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-175 hover:bg-gray-100"
+                        className="hidden xl:flex absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-175 hover:bg-gray-100"
                     >
                         <IoIosArrowForward size={12} />
                     </button>
@@ -118,7 +151,7 @@ export default function CategoryList() {
                 {page > 0 && (
                     <button
                         onClick={handlePrev}
-                        className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-175 hover:bg-gray-100"
+                        className="hidden xl:flex absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-175 hover:bg-gray-100"
                     >
                         <IoIosArrowBack size={12} />
                     </button>

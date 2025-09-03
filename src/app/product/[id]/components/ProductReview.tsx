@@ -28,7 +28,7 @@ const reviews = [
     {
         id: 2,
         user: "tuqdj_2b4n",
-        avatar: "/user1.jpg",
+        avatar: null,
         rating: 5,
         date: "2025-08-01 13:53",
         type: "Trắng, Quốc Tế: Free Size",
@@ -143,7 +143,7 @@ export default function ProductReviews() {
 
     return (
         <div className="w-full bg-[rgba(0,0,0,0.03)] pb-1 pt-4">
-            <div className=" sm:mx-40 bg-white" ref={topRef}>
+            <div className=" xl:mx-40 bg-white" ref={topRef}>
                 <h3 className="hidden sm:flex items-center text-lg h-12 mb-4">
                     <span className="ml-4">MÔ TẢ SẢN PHẨM</span>
                 </h3>

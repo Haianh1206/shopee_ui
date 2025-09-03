@@ -52,7 +52,7 @@ export default function CategoryFilterBar() {
 
     return (
         <div className="w-full bg-[rgba(0,0,0,0.03)] sm:pb-20 border-b-[4px] border-red-500">
-            <div className="sm:mx-40">
+            <div className="md:mx-2 xl:mx-40">
                 <div className="flex min-h-screen">
                     <aside className="hidden sm:grid w-1/6  pr-0 text-sm">
                         <h3 className="font-bold mb-2 flex items-center gap-2">

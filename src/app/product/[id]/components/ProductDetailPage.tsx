@@ -89,9 +89,9 @@ export default function ProductDetailPage() {
     return (
         <div className="w-full bg-[rgba(0,0,0,0.03)] -mt-[110px] sm:pb-4">
 
-            <div className="   mt-26 sm:mx-40 sm:pt-6">
+            <div className="   mt-26 xl:mx-40 sm:pt-6">
 
-                <div className="hidden sm:flex text-[#0055AA] mt-2 mb-6 text-sm ">
+                <div className="hidden sm:flex ml-4 xl:ml-0 text-[#0055AA] mt-2 mb-6 text-sm ">
                     Shopee &gt; Thời Trang Nữ &gt; Áo &gt; Áo thun &gt; <span className="text-gray-900">{product.name}</span>
                 </div>
 
@@ -179,7 +179,7 @@ export default function ProductDetailPage() {
                     </div>
                     <div className="hidden sm:flex flex-col">
                         <div
-                            className="mb-2 w-[444px] h-[444px] relative cursor-pointer"
+                            className="mb-2 w-70 h-70 lg:w-[444px] lg:h-[444px] relative cursor-pointer"
                             onClick={() => setIsModalOpen(true)}
                         >
                             <Image src={selectedImage} alt={product.name} fill className="object-contain" />
@@ -198,13 +198,17 @@ export default function ProductDetailPage() {
                                                 setIsModalOpen(true);
                                             }}
                                         >
-                                            <Image
-                                                src={img}
-                                                alt="thumb"
-                                                width={80}
-                                                height={70}
-                                                className="object-cover"
-                                            />
+                                            <div
+                                                className="relative w-[48px] h-[50px] lg:w-[80px] lg:h-[70px]"
+                                            >
+                                                <Image
+                                                    src={img}
+                                                    alt="thumb"
+                                                    fill
+                                                    className="object-cover"
+                                                />
+                                            </div>
+
                                         </div>
 
                                     ))}
@@ -213,7 +217,7 @@ export default function ProductDetailPage() {
                             <button
                                 onClick={handleThumbPrev}
                                 disabled={startIndex === 0}
-                                className="absolute  left-0 py-2 bg-gray-600 text-white rounded shadow hover:bg-blue-700 disabled:opacity-50"
+                                className="absolute  left-0 py-2 bg-gray-600 text-white rounded shadow  disabled:opacity-50"
 
                             >
                                 <IoIosArrowBack color="white" size={24} />
@@ -224,44 +228,45 @@ export default function ProductDetailPage() {
                                 disabled={
                                     !product.images || startIndex + 5 >= product.images.length
                                 }
-                                className="absolute  right-0 py-2 bg-gray-600 text-white rounded shadow hover:bg-blue-700 disabled:opacity-50"
+                                className="absolute right-0 py-2 bg-gray-600 text-white rounded shadow  disabled:opacity-50"
 
                             >
                                 <IoIosArrowForward color="white" size={24} />
                             </button>
                         </div>
                         <div className="flex mt-4 text-sm">
-                            <div className="flex items-center mt-4 ml-6 gap-2">
-                                <span className="text-gray-800 text-[16px]">Chia sẻ:</span>
-                                <div className="flex items-center gap-2">
+                            <div className="flex items-center mt-4 lg:ml-6 gap-2">
+                                <span className="text-gray-800 lg:text-[16px] md:text-[12px]">Chia sẻ:</span>
+                                <div className="flex items-center md:gap-1 lg:gap-2">
                                     <a href="#">
-                                        <div className="w-7 h-7 flex items-center justify-center rounded-full bg-[#0084FF]">
-                                            <FaFacebookMessenger size={16} className="text-white" />
+                                        <div className="lg:w-7 lg:h-7 md:w-5 md:h-5 flex items-center justify-center rounded-full bg-[#0084FF]">
+                                            <FaFacebookMessenger className="text-white lg:w-4 lg:h-4 md:w-3 md:h-3" />
                                         </div>
                                     </a>
                                     <a href="#">
-                                        <div className="w-7 h-7 flex items-center justify-center rounded-full bg-[#1877F2]">
-                                            <FaFacebookF size={16} className="text-white" />
+                                        <div className="lg:w-7 lg:h-7 md:w-5 md:h-5 flex items-center justify-center rounded-full bg-[#1877F2]">
+                                            <FaFacebookF className="text-white lg:w-4 lg:h-4 md:w-3 md:h-3" />
                                         </div>
                                     </a>
                                     <a href="#">
-                                        <div className="w-7  h-7  flex items-center justify-center rounded-full bg-[#E60023]">
-                                            <FaPinterestP size={16} className="text-white" />
+                                        <div className="lg:w-7 lg:h-7 md:w-5 md:h-5 flex items-center justify-center rounded-full bg-[#E60023]">
+                                            <FaPinterestP className="text-white lg:w-4 lg:h-4 md:w-3 md:h-3" />
                                         </div>
                                     </a>
                                     <a href="#">
-                                        <div className="w-7 h-7 flex items-center justify-center rounded-full bg-[#1DA1F2]">
-                                            <FaTwitter size={16} className="text-white" />
+                                        <div className="lg:w-7 lg:h-7 md:w-5 md:h-5 flex items-center justify-center rounded-full bg-[#1DA1F2]">
+                                            <FaTwitter className="text-white lg:w-4 lg:h-4 md:w-3 md:h-3" />
                                         </div>
                                     </a>
+
 
                                 </div>
                             </div>
 
-                            <div className="w-px h-6 bg-gray-100 mt-4 ml-6 mr-10"></div>
+                            <div className="w-px h-6 bg-gray-100 mt-4 lg:ml-6 lg:mr-10"></div>
 
                             <div className="flex items-center gap-1 mt-4 text-gray-600 cursor-pointer">
-                                <FiHeart size={24} className="text-red-500 mr-2" />
+                                <FiHeart size={24} className="text-red-500 md:ml-4 lg:ml-0 lg:mr-2" />
                                 <span className="text-[16px] text-black">Đã thích (4)</span>
                             </div>
                         </div>

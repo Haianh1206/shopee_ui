@@ -51,7 +51,7 @@ export default function ShopeeMall() {
     return (
         <div className="w-full bg-[rgba(0,0,0,0.03)] sm:pb-6">
 
-            <div className="bg-white sm:mx-40 sm:h-[670px] shadow-sm">
+            <div className="bg-white md:mx-2 xl:mx-40 sm:h-[670px] shadow-sm">
                 <div className="hidden sm:flex items-center justify-between sm:mb-4 pb-2">
                     <div className="flex items-center space-x-4 px-5 pt-5 pb-2">
                         <span className="text-red-600 text-lg">SHOPEE MALL</span>
@@ -227,7 +227,7 @@ export default function ShopeeMall() {
             </div>
 
 
-            <div className="bg-white sm:mx-40 sm:h-[355px] shadow-sm pb-3 sm:pb-0 mt-3 sm:mt-6">
+            <div className="bg-white xl:mx-40 sm:h-[355px] shadow-sm pb-3 sm:pb-0 mt-3 sm:mt-6">
                 <div className="flex items-center justify-between sm:mb-4 ">
                     <h2 className="text-sm sm:text-lg text-gray-500 mb-2 px-4 pt-4">
                         KIỂU CÁCH THỊNH HÀNH - DIỆN BẢNH MẶC SANG

@@ -18,9 +18,9 @@ export default function FlashSale() {
     return (
         <div className="w-full bg-[rgba(0,0,0,0.03)] pb-18 text-center pb-6 border-b-[4px] border-red-500">
 
-            <div className="sm:mx-40">
+            <div className="md:mx-2 xl:mx-40">
                 <div className="flex items-center justify-between ">
-                    <h2 className="text-lg text-[16px] text-gray-500 pl-3 sm:pl-0 mb-2 pt-4 sm:pt-10">CÓ THỂ BẠN CŨNG THÍCH</h2>
+                    <h2 className="text-lg text-[16px] text-gray-500 pl-3 sm:pl-0 mb-2 pt-4 lg:pt-0 sm:pb-4 xl:pt-10">CÓ THỂ BẠN CŨNG THÍCH</h2>
                 </div>
 
                 <div className="grid grid-cols-2 px-2 sm:px-0 sm:grid-cols-5 gap-2 sm:gap-3 pb-6">

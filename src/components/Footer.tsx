@@ -8,7 +8,7 @@ import { FaBook } from "react-icons/fa";
 export default function Footer() {
     return (
         <footer className=" bg-[rgba(0,0,0,0.01)] sm:mt-10">
-            <div className=" hidden sm:grid max-w-7xl mx-42 py-10 grid grid-cols-5 gap-6 border-b border-gray-200 text-sm text-gray-700">
+            <div className=" hidden sm:grid max-w-7xl md:mx-2 xl:mx-42 py-10 grid grid-cols-5 gap-6 border-b border-gray-200 text-sm text-gray-700">
                 <div>
                     <h3 className="font-bold mb-3 text-[12px] uppercase">Dịch Vụ Khách Hàng</h3>
                     <ul className="space-y-2">
@@ -99,7 +99,7 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className="hidden sm:flex py-10  px-42 text-[#0000008A] text-[14px] flex flex-wrap justify-between items-center">
+            <div className="hidden sm:flex py-10  xl:px-42 text-[#0000008A] text-[14px] flex flex-wrap justify-between items-center">
                 <div>© 2025 Shopee. Tất cả các quyền được bảo lưu.</div>
                 <div className=" flex flex-wrap items-center">
                     <span className="text-[#0000008A] text-[14px]">Quốc gia &amp; Khu vực:</span>
@@ -112,18 +112,18 @@ export default function Footer() {
                     <span className="text-[#0000008A] text-[14px] cursor-pointer">Malaysia</span>
                     <span className="mx-0.5">|</span>
                     <span className="text-[#0000008A] text-[14px] cursor-pointer">Việt Nam</span>
-                    <span className="mx-0.5">|</span>
-                    <span className="text-[#0000008A] text-[14px] cursor-pointer">Philippines</span>
-                    <span className="mx-0.5">|</span>
-                    <span className="text-[#0000008A] text-[14px] cursor-pointer">Brazil</span>
-                    <span className="mx-0.5">|</span>
-                    <span className="text-[#0000008A] text-[14px] cursor-pointer">México</span>
-                    <span className="mx-0.5">|</span>
-                    <span className="text-[#0000008A] text-[14px] cursor-pointer">Colombia</span>
-                    <span className="mx-0.5">|</span>
-                    <span className="text-[#0000008A] text-[14px] cursor-pointer">Chile</span>
-                    <span className="mx-0.5">|</span>
-                    <span className="text-[#0000008A] text-[14px] cursor-pointer">Đài Loan</span>
+                    <span className="hidden lg:flex mx-0.5">|</span>
+                    <span className="hidden lg:flex text-[#0000008A] text-[14px] cursor-pointer">Philippines</span>
+                    <span className="hidden lg:flex mx-0.5">|</span>
+                    <span className="hidden lg:flex text-[#0000008A] text-[14px] cursor-pointer">Brazil</span>
+                    <span className="hidden lg:flex mx-0.5">|</span>
+                    <span className="hidden lg:flex text-[#0000008A] text-[14px] cursor-pointer">México</span>
+                    <span className="hidden xl:flex mx-0.5">|</span>
+                    <span className="hidden xl:flex text-[#0000008A] text-[14px] cursor-pointer">Colombia</span>
+                    <span className="hidden xl:flex mx-0.5">|</span>
+                    <span className="hidden xl:flex text-[#0000008A] text-[14px] cursor-pointer">Chile</span>
+                    <span className="hidden xl:flex mx-0.5">|</span>
+                    <span className="hidden xl:flex text-[#0000008A] text-[14px] cursor-pointer">Đài Loan</span>
                 </div>
             </div>
             <div className="bg-[rgba(0,0,0,0.03)] text-center text-xs text-gray-600 py-5 sm:pb-10">

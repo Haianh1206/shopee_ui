@@ -18,20 +18,20 @@ const ProductShopInfo: FC<ShopInfoProps> = ({ name, avatar, stats }) => {
     return (
         <div className="w-full bg-[rgba(0,0,0,0.03)] pt-3 mt-21 sm:pt-0 sm:mt-0 pb-1">
 
-            <div className="    sm:mx-40 ">
+            <div className="    xl:mx-40 ">
 
-                <div className="bg-white p-4 sm:p-8 rounded-[2px] shadow-sm mb-4 flex items-center ">
+                <div className="bg-white p-4 md:p-2 lg:p-8  rounded-[2px] shadow-sm mb-4 flex items-center ">
                     <div className="flex items-center sm:gap-4">
-                        <div className="relative w-20 h-20 sm:w-24 sm:h-24">
+                        <div className="relative w-20 h-20 lg:w-24 lg:h-24">
                             <img
                                 src={avatar}
                                 alt={name}
-                                className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border"
+                                className="w-16 h-16 lg:w-20 lg:h-20 rounded-full object-cover border"
                             />
                             <span
-                                className="absolute bottom-4 sm:bottom-3 left-8 sm:left-[40px] -translate-x-1/2
-                                    bg-orange-600 text-white text-[10px] sm:text-[12px] 
-                                    px-1 py-0.5 sm:px-1.5 sm:py-1 rounded-[2px]
+                                className="absolute bottom-4 lg:bottom-3 left-8 lg:left-[40px] -translate-x-1/2
+                                    bg-orange-600 text-white text-[10px] lg:text-[12px] 
+                                    px-1 py-0.5 lg:px-1.5 lg:py-1 rounded-[2px]
                                     whitespace-nowrap leading-none"
                             >
                                 Yêu Thích
@@ -73,7 +73,7 @@ const ProductShopInfo: FC<ShopInfoProps> = ({ name, avatar, stats }) => {
 
                     </div>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-10 gap-y-6 text-sm mb-2">
+                    <div className="hidden sm:grid grid-cols-2 sm:grid-cols-3 gap-x-10 gap-y-6 text-sm mb-2">
 
                         <div className="flex flex-row ml-6 items-center justify-between">
                             <p className="text-gray-400">Đánh Giá</p>

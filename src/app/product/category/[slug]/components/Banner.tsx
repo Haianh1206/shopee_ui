@@ -53,7 +53,7 @@ export default function BannerSection() {
     return (
         <div className="w-full bg-[rgba(0,0,0,0.03)] sm:pt-8 pb-3 sm:pb-8">
 
-            <div className=" sm:mx-40  ">
+            <div className=" xl:mx-40  ">
 
                 <div className="flex gap-2">
 

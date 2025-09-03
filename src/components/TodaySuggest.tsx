@@ -18,23 +18,26 @@ export default function FlashSale() {
 
     return (
         <div className="w-full bg-[rgba(0,0,0,0.03)] sm:pb-18 text-center pb-6 sm:border-b-[4px] border-red-500">
-            <div className="sm:mx-40 sm:bg-transparent">
-                <div className="hidden sm:flex bg-white text-center mb-4 border-b-[4px] border-red-500">
-                    <h2 className="text-lg text-[16px] text-orange-500 mb-4 px-4 pt-4">
+            <div className="xl:mx-40 sm:bg-transparent">
+                <div className="hidden sm:flex justify-center bg-white mb-4 border-b-[4px] border-red-500">
+                    <h2 className="text-lg text-orange-500 mb-4 px-4 pt-4">
                         GỢI Ý HÔM NAY
                     </h2>
                 </div>
-                <div className="flex bg-white  sm:hidden items-center pl-3 pr-1 h-10  justify-between pb-4 pt-2">
-                    <h2 className="flex sm:hidden text-md text-orange-600  pt-2">GỢI Ý HÔM NAY</h2>
-                    <button className="flex items-center cursor-pointer text-gray-600 text-xs font-medium">
+
+                <div className="flex sm:hidden bg-white items-center pl-3 pr-1 h-10 pb-4 pt-2 
+                justify-between ">
+                    <h2 className="text-md text-orange-600 pt-2">GỢI Ý HÔM NAY</h2>
+
+                    <button className="flex items-center cursor-pointer text-gray-600 text-xs font-medium md:hidden">
                         Xem thêm
                         <span className="ml-1 p-1 flex items-center justify-center">
                             <IoIosArrowForward className="text-gray" size={12} />
-
                         </span>
                     </button>
                 </div>
-                <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 sm:gap-3 px-2 sm:px-4 pb-6">
+
+                <div className="grid grid-cols-2 md:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-3 md:px-1 xl:px-2 sm:px-4 pb-6">
                     {products.map((product) => (
                         <div
                             key={product.id}

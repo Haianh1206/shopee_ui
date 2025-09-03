@@ -43,11 +43,11 @@ export default function Header() {
 
     return (
         <header
-            className={`${isProductDetail ? "relative" : "fixed"} top-0 left-0 w-full z-50 px-0 sm:px-6 lg:px-[140px] h-[56px] sm:h-[120px]
+            className={`${isProductDetail ? "relative" : "fixed"} top-0 left-0 w-full z-50 px-0 md:px-0 sm:px-6 xl:px-[140px] h-[56px] sm:h-[120px]
 bg-gradient-to-b from-[#ee4d2d] to-[#ff7337] text-white shadow`}
 
         >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className=" mx-[26px] px-4 sm:px-6 md:px-2">
 
                 <div className="hidden sm:flex flex justify-between items-center text-sm h-[40px] border-white/20">
                     <div className="flex">
@@ -60,7 +60,7 @@ bg-gradient-to-b from-[#ee4d2d] to-[#ff7337] text-white shadow`}
 
                         <Link
                             href="#"
-                            className="inline-block text-[13px] text-white pr-3 pl-3 relative hover:opacity-70 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:h-4 after:border-r after:border-white/50 after:opacity-100"
+                            className="hidden xl:flex text-[13px] text-white pr-3 pl-3 relative hover:opacity-70 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:h-4 after:border-r after:border-white/50 after:opacity-100"
                         >
                             Trở thành Người bán Shopee
                         </Link>
@@ -305,16 +305,16 @@ bg-gradient-to-b from-[#ee4d2d] to-[#ff7337] text-white shadow`}
                             <Link className="mt-1" href="">
                                 Giày Quai Hậu Nữ Đế Thấp
                             </Link>
-                            <Link className="mt-1" href="">
+                            <Link className="hidden lg:flex mt-1" href="">
                                 Bánh Phơi Sương Nhiều Bơ
                             </Link>
-                            <Link className="mt-1" href="">
+                            <Link className="hidden lg:flex mt-1" href="">
                                 Sale 1k Điện Thoại iPhone
                             </Link>
-                            <Link className="mt-1" href="">
+                            <Link className="hidden xl:flex mt-1" href="">
                                 Kẹp Tóc 50 Cái
                             </Link>
-                            <Link className="mt-1" href="">
+                            <Link className="hidden xl:flex mt-1" href="">
                                 Máy Quạt Điện
                             </Link>
                         </div>

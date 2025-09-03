@@ -10,7 +10,7 @@ const ProductSpecifications: FC<SpecificationsProps> = ({ specs, content, hashta
     return (
         <div className="w-full bg-[rgba(0,0,0,0.03)] pb-1">
 
-            <div className="   sm:mx-40 ">
+            <div className="   xl:mx-40 ">
                 <div className="bg-white px-6 py-4 rounded-sm shadow-sm">
                     <h3 className="flex items-center text-lg h-12 bg-gray-100 mb-4">
                         <span className="ml-4">CHI TIẾT SẢN PHẨM</span>

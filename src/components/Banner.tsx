@@ -50,7 +50,7 @@ export default function BannerSection() {
     }, [])
 
     return (
-        <div className="w-full max-w-[1200px] h-28 sm:h-auto mt-38 mx-auto  px-2">
+        <div className="h-28 sm:h-auto mt-38 xl:mx-[156px]  px-2">
             <div className="-mt-20 sm:hidden order-1 px-1 overflow-x-auto scrollbar-custom">
                 <div className="inline-flex gap-2 snap-x snap-mandatory pb-3">
                     {items.map((item) => (

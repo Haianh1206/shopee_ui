@@ -56,7 +56,7 @@ export default function ShopeeMall() {
     };
     return (
         <div className="w-full bg-[rgba(0,0,0,0.03)] pb-3 sm:pb-6">
-            <div className="bg-white sm:mx-40 shadow-sm">
+            <div className="bg-white md:px-2 xl:mx-40 shadow-sm">
                 <div className="mb-1 sm:mb-4 sm:border-b border-gray-200 pb-2">
                     <div className="hidden sm:flex items-center justify-between px-5 pt-5 pb-2">
                         <div className="flex items-center space-x-4 text-base">
@@ -202,12 +202,14 @@ export default function ShopeeMall() {
                             </div>
                         </div>
 
+
                         {page > 0 && (
                             <button
                                 onClick={handlePrev}
                                 className="hidden sm:flex absolute top-[42%] left-0 -translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-175 hover:bg-gray-100"
                             >
-                                <IoIosArrowBack size={12} />
+                                <IoIosArrowBack className="xl:w-3 xl:h-3 md:w-10 md:h-10" />
+
                             </button>
                         )}
                         {page < totalPages - 1 && (
@@ -215,7 +217,7 @@ export default function ShopeeMall() {
                                 onClick={handleNext}
                                 className="hidden sm:flex absolute top-[42%] -right-5.5 translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-175 hover:bg-gray-100"
                             >
-                                <IoIosArrowForward size={12} />
+                                <IoIosArrowForward className="xl:w-3 xl:h-3 md:w-10 md:h-10" />
                             </button>
                         )}
                     </div>

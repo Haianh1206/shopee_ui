@@ -51,7 +51,7 @@ export default function FlashSale() {
 
     return (
         <div className="w-full bg-[rgba(0,0,0,0.03)] pb-6">
-            <div className="bg-white sm:mx-40 shadow-sm">
+            <div className="bg-white xl:mx-40 shadow-sm">
                 <div className="bg-white sm:h-[340px] ">
 
                     <div className="flex items-center justify-between sm:mb-4 sm:border-b border-gray-200">
@@ -127,7 +127,7 @@ function SampleNextArrow({ onClick, show }: ArrowProps) {
     return (
         <div
             onClick={onClick}
-            className="hidden sm:flex absolute z-9 top-1/2 right-0 translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-150 hover:bg-gray-100"
+            className="hidden xl:flex absolute z-9 top-1/2 right-0 translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-150 hover:bg-gray-100"
         >
             <IoIosArrowForward size={14} className="text-gray-700" />
         </div>
@@ -139,7 +139,7 @@ function SamplePrevArrow({ onClick, show }: ArrowProps) {
     return (
         <div
             onClick={onClick}
-            className="hidden sm:flex absolute z-9 top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-150 hover:bg-gray-100"
+            className="hidden xl:flex absolute z-9 top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 transition-transform duration-200 group-hover:scale-150 hover:bg-gray-100"
         >
             <IoIosArrowBack size={14} className="text-gray-700" />
         </div>

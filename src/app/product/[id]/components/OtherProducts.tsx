@@ -55,9 +55,9 @@ export default function FlashSale() {
     return (
         <div className="w-full bg-[rgba(0,0,0,0.03)] ">
 
-            <div className=" sm:mx-40 ">
-                <div className="flex items-center justify-between ">
-                    <h2 className="text-lg text-[16px] ml-3 sm:ml-0 text-gray-500 mb-2 pt-3 sm:pt-10">CÁC SẢN PHẨM KHÁC CỦA SHOP</h2>
+            <div className=" xl:mx-40 md:pb-20 lg:pb-0">
+                <div className="flex items-center justify-between sm:pt-4 sm:pb-4">
+                    <h2 className="text-lg text-[16px] ml-3 sm:ml-0 text-gray-500 mb-2 pt-3  ">CÁC SẢN PHẨM KHÁC CỦA SHOP</h2>
 
                     <button className="hidden sm:flex items-center cursor-pointer text-red-400 text-sm font-medium">
                         Xem Tất Cả
